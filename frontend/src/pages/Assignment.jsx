@@ -3,38 +3,58 @@ import axios from 'axios';
 import './Assignment.css';
 
 function Assignment() {
+    var roll_number = 220101099;
+    var assignment_id = null;
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState('');
     const [message, setMessage] = useState('');
 
+  
+  const handleUpload = async (event) => {
+    event.preventDefault();
+    if (file) {
+      uploadFile(file);
+    }
+  };
+
+  const uploadFile = async (file) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append("roll_no",roll_no);
+    formData.append("assn_id",assignment_id);
+    console.log(1);
+    try{
+        const response = await fetch('http://localhost:8080/assignment/upload', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const data = await response.json();
+        console.log("Done: ",data.url);
+        // setUrl(`http://localhost:3000/download?url=${encodeURIComponent(data.url)}`);
+        // setFN(file.name);
+        setMessage('File uploaded successfully: ' + data.url);
+        setFileName(''); // Clear filename after successful upload
+        setFile(null); // Clear file object
+    } catch (error) {
+        setMessage('Upload failed: ' + error.message);
+    }
+    return;
+  };
+
+
+
+
+
+
+    
     const handleFileChange = (e) => {
         setFile(e.target.files[0]);
         setFileName(e.target.files[0].name);
         setMessage('');
     };
 
-    const handleUpload = async () => {
-        if (!file) {
-            setMessage('Please attach a file first!');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('file', file);
-
-        try {
-            const response = await axios.post('http://localhost:8000/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            setMessage('File uploaded successfully: ' + response.data.message);
-            setFileName(''); // Clear filename after successful upload
-            setFile(null); // Clear file object
-        } catch (error) {
-            setMessage('Upload failed: ' + error.message);
-        }
-    };
+    
 
     return (
         <div className="upload-container">
@@ -50,10 +70,16 @@ Cras ornare pharetra arcu at congue. Morbi eleifend euismod nibh sed euismod. Se
             </div>
             <h2>File Submission</h2>
             <div className="submission">
-            <input type="file" id="file-input" style={{ display: 'none' }} onChange={handleFileChange} />
-            <label htmlFor="file-input" className="btn-attach">Attach File</label>
-            {fileName && <span className="file-name">{fileName}</span>}
-            <button onClick={handleUpload} className="btn-hand-in">Hand In</button>
+            
+            
+            
+            <form onSubmit={handleUpload}>
+                <input type="file" id="file-input" style={{ display: 'none' }} onChange={handleFileChange} />
+                <label htmlFor="file-input" className="btn-attach">Attach File</label>
+                {fileName && <span className="file-name">{fileName}</span>}
+                <button type="submit" className="btn-hand-in">Hand In</button>
+            </form>
+
             {message && <p>{message}</p>}
         </div>
         </div>

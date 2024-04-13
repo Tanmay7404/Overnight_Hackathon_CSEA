@@ -9,7 +9,7 @@ const assignmentSchema = new mongoose.Schema({
   submissions: [{
     id:{ type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     name:String,
-    //files:
+    file: String,
     marks:Number,
     feedback:String,
     submissionTime:{ type: Date, default: Date.now }

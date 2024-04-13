@@ -9,15 +9,8 @@ class UserController {
                 fullName: userDetails.fullName,
                 rollNumber: userDetails.rollNumber,
                 email: userDetails.email,
-                profileInfo: {
-                    bio: userDetails.profileInfo.bio,
-                    profilePicture: {
-                        url: userDetails.profileInfo.profilePicture.url,
-                        filename: userDetails.profileInfo.profilePicture.filename
-                    }
-                },
                 department: userDetails.department,
-                type: userDetails.type,
+                role: userDetails.role,
                 assignments: userDetails.assignments // Assuming assignments is an array of ObjectIds
             });
     

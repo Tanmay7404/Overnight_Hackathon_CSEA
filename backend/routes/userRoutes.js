@@ -11,7 +11,7 @@ userRouter.post("/addNewUser", async (req,res)=>{
         var UC = new UserController();
         const username = await UC.addNewUser(user_details);
 
-       // console.log(1222)
+       // console.log(1222)a
        res.send("success")
     } catch (error) {
        // console.error(error);

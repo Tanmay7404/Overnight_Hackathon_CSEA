@@ -216,14 +216,38 @@ class AssigmentController {
             }
         }
            
-        async getAssignments(id) {
+        async getAssignments(id,roll_no) {
             try {
                 var currAssignment = await Assignment.findById(id);
                 if (!currAssignment) {
-                 throw new Error("Assignment not found");
-             }
-    
-                return currAssignment;
+                    throw new Error("Assignment not found");
+                }
+                var sub = currAssignment.submissions;
+                if(sub.find((ele)=> (ele.rollNumber == roll_no))){
+                    return ({ass:currAssignment,submitted:true});
+                }
+                else{
+                    return ({ass:currAssignment,submitted:false});
+                }
+                
+            } catch (err) {
+                throw new Error(err);
+            }
+        }
+
+        async removeSub(id,roll_no) {
+            try {
+                var currAssignment = await Assignment.findById(id);
+                if (!currAssignment) {
+                    throw new Error("Assignment not found");
+                }
+                var sub = currAssignment.submissions;
+                var sss = sub.filter((ele)=> (ele.rollNumber!=roll_no));
+                currAssignment.submissions = sss;
+                await currAssignment.save();
+                // console.log(currAssignment);
+                return;
+                
             } catch (err) {
                 throw new Error(err);
             }

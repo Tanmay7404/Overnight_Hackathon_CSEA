@@ -14,6 +14,8 @@ function Assignment() {
 //   const [assignment_id, setAssId] = useState();
   const [role, setRole] = useState(0);
 
+  const [submitted,changeSub] = useState(true);
+
   useEffect(() => {
     const user = localStorage.getItem('user');
     if (!user) {
@@ -34,11 +36,15 @@ function Assignment() {
     const fetchAssignment = async () => {
         
       try {
-        const response = await fetch(`http://localhost:8080/assignment/getAssignments/${id}`, {
-          method: 'GET',
+        const response = await fetch(`http://localhost:8080/assignment/getAssignments`, {
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json'
-          }
+          },
+          body: JSON.stringify({
+            "roll_no": parsedUser.rollNumber,
+            "assn_id": id
+        })
         });
 
         if (!response.ok) {
@@ -46,7 +52,8 @@ function Assignment() {
         }
 
         const data = await response.json();
-        setPageData(data);
+        setPageData(data.ass);
+        changeSub(data.submitted);
       } catch (error) {
         console.error('Error:', error);
         alert('Error Fetching assignment');
@@ -84,8 +91,41 @@ function Assignment() {
 
   const handleUpload = async (event) => {
     event.preventDefault();
-    if (file) {
-      uploadFile(file);
+    if(!submitted){
+      
+      if (file) {
+        uploadFile(file);
+      }
+      
+    }
+    else{
+      
+      removeSub();
+    }
+  };
+
+  const removeSub = async () =>{
+
+    try {
+      const response = await fetch(`http://localhost:8080/assignment/removeSub`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "roll_no": roll_no,
+          "assn_id": id
+      })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch assignment details');
+      }
+      setMessage("Your Submission is removed")
+      changeSub(false);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Removing Submission');
     }
   };
 
@@ -106,13 +146,12 @@ function Assignment() {
         throw new Error(data.message || 'Upload failed');
       }
       if(data.url){
-      setMessage('File uploaded successfully: ' + data.url);
+      setMessage('Handed In Sucessfully');
     }
-    else{
-          setMessage('Already Submitted');
-      }
+    
       setFileName(''); // Clear filename after successful upload
       setFile(null); // Clear file object
+      changeSub(true);
     } catch (error) {
       setMessage('Upload failed: ' + error.message);
     }
@@ -159,7 +198,7 @@ function Assignment() {
                         </div>
                         <div className="hand-in-button">
                             {fileName && <span className="file-name">{fileName}</span>}
-                            <button type="submit" className="btn-hand-in">Hand In</button>
+                            <button type="submit" className="btn-hand-in">{submitted? "Hand In": "Undo Hand In"}</button>
                         </div>
                     </form>
                     {message && <p>{message}</p>}

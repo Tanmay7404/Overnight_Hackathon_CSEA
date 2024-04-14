@@ -53,13 +53,14 @@ assigmentRouter.post("/addSubmission", async (req,res)=>{
 // });
 
 
-assigmentRouter.get("/getAssignments/:assignmentId", async (req,res)=>{
+assigmentRouter.post("/getAssignments", async (req,res)=>{
     try {
-        var assignmentId = req.params.assignmentId;
+        var assignmentId = req.body.assn_id;
+        var roll_no = req.body.roll_no;
 
         var AC = new AssignmentController();
 
-        const assignment = await AC.getAssignments(assignmentId);
+        const assignment = await AC.getAssignments(assignmentId,roll_no);
 
        // console.log(1222)
        res.send(assignment)
@@ -68,6 +69,24 @@ assigmentRouter.get("/getAssignments/:assignmentId", async (req,res)=>{
         res.status(500).send("Internal Server Error");
     }
 });
+
+assigmentRouter.post("/removeSub", async (req,res)=>{
+  try {
+      var assignmentId = req.body.assn_id;
+      var roll_no = req.body.roll_no;
+
+      var AC = new AssignmentController();
+
+      await AC.removeSub(assignmentId,roll_no);
+
+    //  console.log(1222)
+     res.send("done");
+  } catch (error) {
+     // console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
 assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
   try {
     var assignmentId = req.params.assignmentId;

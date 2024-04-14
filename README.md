@@ -13,7 +13,7 @@ Easy and secure file uploads in various formats.
 Handles multiple file submissions for each assignment, provided they are made before the assignments end
 
 **Plagiarism Detection:**
-remove all the comments and whitespaces from the code, normalises the variables and then check the codes of all the submissions for similarity and detects plag
+remove all the comments and whitespaces from the code, normalises the variables and then check the codes of all the submissions for similarity and detects plag. (Baker's Dup Algorithm)
 
 **Auto-grading:**
 Instructor can provide Test Cases Api will be called to run the code on an online compiller and the student is graded accordingly
@@ -41,11 +41,11 @@ nodeJs, React, Mongoose,
 ## How to Run 
 1) Clone the repo on your device
 2) In the terminal type the following commands to run backend
-```
+   ```
    cd backend
    npm i
    npm start
-```
+   ```
 4) In another terminal run the frontend
    ```
    cd frontend

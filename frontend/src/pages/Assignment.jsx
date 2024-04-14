@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Assignment.css';
 
 function Assignment() {
-    var roll_number = 220101099;
+    var roll_no = 220101099;
     var assignment_id = null;
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState('');

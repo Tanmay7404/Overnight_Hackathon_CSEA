@@ -16,10 +16,10 @@ assigmentRouter.post("/addNewAssignment", async (req,res)=>{
         var AC = new AssignmentController();
         const assignment = await AC.addNewAssignment(assignment_details);
 
-       // console.log(1222)
+       console.log(1222)
        res.send("success")
     } catch (error) {
-       // console.error(error);
+       console.error(error);
         res.status(500).send("Internal Server Error");
     }
 });

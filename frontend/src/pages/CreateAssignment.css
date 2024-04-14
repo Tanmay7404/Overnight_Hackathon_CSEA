@@ -1,0 +1,68 @@
+/* CreateAssignment.css */
+.create-assignment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #aaa; /* Light grey background to ensure contrast */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+    width: 50%; /* Or your preferred width */
+    margin: auto; /* Center the container on the page */
+    margin-top: 50px; /* Add some margin from the top */
+}
+
+.create-assignment-container TextInputs,
+.create-assignment-container textarea {
+    margin: 10px 0;
+    padding: 8px;
+    width: 300px;
+    height: 100px; /* Make TextInputss take most of the container width */
+    display: block; /* Ensure each TextInputs is on a new line */
+    border: 1px solid #ccc; /* Subtle border for TextInputss */
+    border-radius: 4px; /* Slightly rounded corners for TextInputss */
+    box-sizing: border-box; /* Include padding and border in the width */
+}
+.create-assignment-container TextInputs{
+    height: 50px;
+}
+.create-assignment-container h1{
+    color: #333;
+    padding: 20px;
+}
+.create-assignment-container button {
+    padding: 10px 20px;
+    background-color: rgba(11, 11, 224, 0.649); /* Green background for the button */
+    color: white; /* White text for contrast */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Add some space above the button */
+    width: auto; /* Auto width based on content */
+}
+
+.create-assignment-container button:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+}
+
+/* Additional styles for labels to enhance form readability */
+.create-assignment-container label {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    color: #333; /* Dark color for readability */
+    font-size: 16px; /* Slightly larger font size for labels */
+}
+
+/* Adjust text color and styling for better visibility and formality */
+.create-assignment-container TextInputs[type='text'],
+.create-assignment-container TextInputs[type='datetime-local'],
+.create-assignment-container textarea {
+    color: #333; /* Dark text color for better contrast */
+    font-family: Arial, sans-serif; /* Formal and readable font */
+    
+}
+
+.create-assignment-container label{
+    font-size: 1.4rem;
+}

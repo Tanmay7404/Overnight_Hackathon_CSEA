@@ -196,7 +196,12 @@ class AssigmentController {
                 if (!currAssignment) {
                     throw new Error("Assignment not found");
                 }
-        
+                // console.log(currAssignment.endTime,Date.now());
+                // console.log(111);
+                if(currAssignment.endTime < Date.now()){
+                    throw new Error("Assignment Has Ended");
+                
+                }
                 // Check if there is already a submission with the same rollNumber
                 if (currAssignment.submissions.findIndex(sub => sub.rollNumber.toString() === submission.rollNumber.toString()) !== -1) {
                     throw new Error('Already submitted');
@@ -242,6 +247,10 @@ class AssigmentController {
                 if (!currAssignment) {
                     throw new Error("Assignment not found");
                 }
+                if(currAssignment.endTime < Date.now()){
+                    throw new Error("Assignment Has Ended");
+                
+                }
                 var sub = currAssignment.submissions;
                 var sss = sub.filter((ele)=> (ele.rollNumber!=roll_no));
                 currAssignment.submissions = sss;
@@ -250,7 +259,7 @@ class AssigmentController {
                 return;
                 
             } catch (err) {
-                throw new Error(err);
+                throw new Error(err.message);
             }
         }
 

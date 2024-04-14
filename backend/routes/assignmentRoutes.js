@@ -35,7 +35,7 @@ assigmentRouter.post("/addSubmission", async (req,res)=>{
      res.send("success")
   } catch (error) {
       console.error(error);
-      res.status(500).send("Internal Server Error");
+      res.status(500).send(error.message);
   }
 });
 // assigmentRouter.post("/addSubmission", async (req,res)=>{
@@ -66,7 +66,7 @@ assigmentRouter.post("/getAssignments", async (req,res)=>{
        res.send(assignment)
     } catch (error) {
        // console.error(error);
-        res.status(500).send("Internal Server Error");
+       res.status(500).send(JSON.stringify(error.message));
     }
 });
 
@@ -83,7 +83,7 @@ assigmentRouter.post("/removeSub", async (req,res)=>{
      res.send("done");
   } catch (error) {
      // console.error(error);
-      res.status(500).send("Internal Server Error");
+     res.status(500).send(JSON.stringify(error.message));
   }
 });
 
@@ -99,7 +99,7 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
    res.send("success")
 } catch (error) {
    // console.error(error);
-    res.status(500).send("Internal Server Error");
+   res.status(500).send(JSON.stringify(error.message));
 }
   //getting the required data from the request 
 
@@ -164,11 +164,11 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
         res.send({ url: req.file.path });  // Send the URL of the uploaded file back
     } catch(err){
       console.log(err)
-        res.send(err);
+        res.status(500).send(JSON.stringify(err.message));
     }
     
     // var data = await fetchTextData(req.file.path);
-    // console.log("Save in MongoDB: ", data);
+    // console.log("Save in MongoDB: "z, data);
     
     
   });

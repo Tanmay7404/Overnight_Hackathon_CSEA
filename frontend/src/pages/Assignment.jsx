@@ -175,7 +175,7 @@ function Assignment() {
 
       const data = await response.json();
       if (!response.ok) {
-        throw new Error(data.message || 'Upload failed');
+        throw new Error(data + ' Upload failed');
       }
       if(data.url){
       setMessage('Handed In Sucessfully');
@@ -185,7 +185,7 @@ function Assignment() {
       setFile(null); // Clear file object
       changeSub(true);
     } catch (error) {
-      setMessage('Upload failed: ' + error.message);
+      setMessage(error.message);
     }
   };
 

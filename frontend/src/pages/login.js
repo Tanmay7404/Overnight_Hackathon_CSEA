@@ -116,9 +116,9 @@ const handleRadioChange = (e) => {
       {/* </div> */}
 
    
-        <TextInputs name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false} />
+        <TextInputs type = "" name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false}/>
 
-        <TextInputs name="Password"  state={password} setState={setPassword} fixed={false} ttype = "password"/>
+        <TextInputs type="password" name="Password"  state={password} setState={setPassword} fixed={false}/>
      
       
 

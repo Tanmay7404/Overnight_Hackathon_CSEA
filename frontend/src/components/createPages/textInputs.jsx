@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from '@mui/material/TextField';
 
-export default function TextInputs ({name,state,setState, fixed,ttype="text"}){
+export default function TextInputs ({name,state,setState, fixed,type}){
     const style = {
         "& .MuiOutlinedInput-root": {
             "&.Mui-focused fieldset": {
@@ -23,8 +23,7 @@ export default function TextInputs ({name,state,setState, fixed,ttype="text"}){
                 <p className="text_input" >{name}</p>
             </div>
             
-            <TextField fullWidth  className="fullWidth" size="small" sx={fixed?fixedstyle:style}
-                type={ttype}
+            <TextField type = {type} fullWidth  className="fullWidth" size="small" sx={fixed?fixedstyle:style}
                 value={state}
                 onChange={(event) => {if(!fixed){setState(event.target.value) }}}
                 InputProps={{

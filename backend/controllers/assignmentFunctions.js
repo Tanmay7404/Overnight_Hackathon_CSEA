@@ -53,7 +53,7 @@ class AssigmentController {
                 const testCases=currAssignment.testCases
                 const language=currAssignment.language
                 const testCaseSize=testCases.length
-                var newSubmissions=submissions;
+                var newSubmissions=[];
                 var stringArr=[]
                 for (const submission of submissions)
                 {
@@ -74,7 +74,6 @@ class AssigmentController {
 
                 }
                 var marks=(a/testCaseSize)*100;
-                newSubmissions=newSubmissions.filter(msg=>msg.rollNumber!==submission.rollNumber)
                 var nextSubmission=submission
                 nextSubmission.marks=marks;
                 newSubmissions.push(nextSubmission)

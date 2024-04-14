@@ -198,7 +198,7 @@ function Assignment() {
                         </div>
                         <div className="hand-in-button">
                             {fileName && <span className="file-name">{fileName}</span>}
-                            <button type="submit" className="btn-hand-in">{submitted? "Hand In": "Undo Hand In"}</button>
+                            <button type="submit" className="btn-hand-in">{!submitted? "Hand In": "Undo Hand In"}</button>
                         </div>
                     </form>
                     {message && <p>{message}</p>}

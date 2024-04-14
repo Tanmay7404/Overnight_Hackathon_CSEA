@@ -357,4 +357,11 @@ input:checked + .slider:before {
   visibility: visible; /* Show the button when hovering over the image container */
 }
 
-  
+.contentPP .pass{
+  background-color: black;
+  color: white;
+  height: 38px;
+}
+/* .contentPP input{
+  height: 20px;
+} */

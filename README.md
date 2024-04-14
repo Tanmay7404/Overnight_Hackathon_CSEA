@@ -8,7 +8,7 @@ One can find the problem statement here "https://docs.google.com/document/d/1m3t
 The CS Assignment Autograder Portal is a comprehensive platform designed to streamline the assignment submission, plagiarism detection, and grading process for Computer Science students and instructors at IIT Guwahati. This project aims to alleviate the challenges faced by both students and teaching assistants by providing a centralized and automated system for managing assignments.
 
 Features
-**Submission Management:** 
+**Submission Management:**
 Easy and secure file uploads in various formats. 
 Handles multiple file submissions for each assignment, provided they are made before the assignments end
 
@@ -18,7 +18,7 @@ remove all the comments and whitespaces from the code, normalises the variables 
 **Auto-grading:**
 Instructor can provide Test Cases Api will be called to run the code on an online compiller and the student is graded accordingly
 
-**Feedback and Review:** 
+**Feedback and Review:**
 Provides a clear and organized interface for instructors to review submissions and leave comments
 Students can access detailed feedback from auto-grading and instructor reviews
 

@@ -82,7 +82,7 @@ function CreateAssignment() {
     body: JSON.stringify({
         "title":title,
         "question":question,
-        "endtime":endTime,
+        "endTime":endTime,
         // "testInput":testInput,
         // "testOutput":testOutput,
         "language": lang,

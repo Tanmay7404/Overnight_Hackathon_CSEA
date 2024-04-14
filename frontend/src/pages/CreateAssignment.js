@@ -46,9 +46,9 @@ function CreateAssignment() {
     const { name, value } = e.target;
 //     // Handle date conversion to ISO string right away if it's the endTime
     const newValue = name === 'endTime' ? new Date(value).toISOString() : value;
-    const timePart = value.split('T')[1];
+    // const timePart = value.split('T')[1];
     // state = {endTime};
-    console.log(timePart);
+    console.log(newValue);
     setEndTime(newValue);
 //     setFormData(prevState => ({
 //       ...prevState,

@@ -15,6 +15,8 @@ function AssignmentList() {
   const navigate = useNavigate(); 
   
     useEffect(() => {
+      
+
       async function fetchData() {
         const user = localStorage.getItem('user');
         // Make sure to parse the user if it's a JSON string
@@ -89,25 +91,35 @@ function AssignmentList() {
   const handleCreateNewAssignment = () => {
     navigate(`/createAssignment`); // Changed method call from history.push to navigate
   };
+  const handleLogOut = () => {
+    localStorage.removeItem('user');
+    navigate(`/login`); // Changed method call from history.push to navigate
+  };
 
   
   
 
   return (
     <div>
-      <h1 className="assignment-head">Assignments</h1>
-      {role === 1 && (
-        <button className="create-assignment-btn" onClick={handleCreateNewAssignment}>
-          Create New Assignment
-        </button>
-      )}
-      <div className="assignments-container">
-        {assignments.map(assignment => (
-          <AssignmentCard key={assignment.id} assignment={assignment} onClick={handleAssignmentClick} />
-        ))}
-      </div>
+        <div className="header">
+            <h1 className="assignment-head">Assignments</h1>
+            <button className="logout-btn" onClick={handleLogOut}>
+                Log Out
+            </button>
+        </div>
+        {role === 1 && (
+            <button className="create-assignment-btn" onClick={handleCreateNewAssignment}>
+                Create New Assignment
+            </button>
+        )}
+        <div className="assignments-container">
+            {assignments.map(assignment => (
+                <AssignmentCard key={assignment.id} assignment={assignment} onClick={handleAssignmentClick} />
+            ))}
+        </div>
     </div>
-  );
+);
+
 }
 
 export default AssignmentList;

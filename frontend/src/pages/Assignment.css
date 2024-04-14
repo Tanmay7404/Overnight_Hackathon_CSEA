@@ -12,6 +12,10 @@ body {
     padding: 20px;
     color: #fff; /* White text color for better readability in dark mode */
   }
+  /* .upload-container.form{
+    display: flex;
+    
+  } */
 
   .btn-attach, .btn-hand-in {
     padding: 10px 20px;
@@ -35,7 +39,7 @@ body {
 
   .btn-hand-in {
     background-color: #0056b3; /* Blue for the hand in button */
-    margin-left: auto; /* Keep Hand In to the right side */
+    /* Keep Hand In to the right side */
   }
 
   .btn-hand-in:hover {
@@ -59,6 +63,76 @@ body {
     border-radius: 50px;
     /* Slightly muted green for messages */
   }
-  .submission{
-    display: flex;
+  .upload-container.logout-btn{
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
   }
+
+  .submission {
+    /* position: relative; */
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between; /* Spreads the child elements across the available width */
+    align-items: center; /* Keeps elements vertically aligned in the center */
+    width: 100%; /* Ensures the container takes the full width of its parent */
+}
+
+.btn-hand-in {
+    margin-left: auto;
+}
+.hand-in-button{
+    margin: auto;
+}
+
+
+.submission {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Ensures children are spaced out to each end */
+    align-items: center; /* Vertically centers the content */
+    width: 100%; /* Takes full width */
+}
+
+.input-button, .hand-in-button {
+    display: flex;
+    align-items: center;
+}
+
+.btn-attach, .btn-hand-in {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: white; /* White text for all buttons */
+}
+
+.btn-attach {
+    background-color: #2c2c2c; /* Darker shade for attach button */
+}
+
+.btn-attach:hover {
+    background-color: #3d3d3d; /* Lighter grey on hover */
+}
+
+.btn-hand-in {
+    background-color: #0056b3; /* Blue for the hand in button */
+}
+
+.btn-hand-in:hover {
+    background-color: #004488; /* Darker blue on hover */
+}
+
+.file-name {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #aaa; /* Light grey color for file name to make it stand out less */
+}

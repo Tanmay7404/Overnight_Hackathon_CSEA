@@ -7,6 +7,7 @@
     max-width: 60%;
     margin: auto;
   }
+
   .assignment-head {
     text-align: center;
     margin-top: 20px;
@@ -40,7 +41,10 @@
   .create-assignment-btn:hover {
     background-color: #45a049;
   }
-  
+
+  .logout-btn{
+    margin-left: auto;
+  }
 
   #persons{
 
@@ -75,3 +79,35 @@
 .person:hover{
     background-color: #3B3B3B;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Keeps items at the ends */
+    align-items: center; /* Vertically centers the items */
+    padding: 10px 20px; /* Adds padding around the content */
+}
+
+.assignment-head {
+    flex-grow: 1; /* Allows the title to take the available space */
+    text-align: center; /* Centers the title text */
+    margin: 0; /* Removes default margin */
+}
+
+
+.logout-btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #45a049;
+}
+
+.assignment-head {
+    margin-bottom: 50px; /* Removes margin to align properly inside flex container */
+}
+

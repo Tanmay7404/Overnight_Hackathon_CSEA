@@ -116,6 +116,7 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
     var assn_id = req.body.assn_id;
     try{
         var user =await User.findOne({rollNumber: roll_no,role: 0});
+        console.log(req.file.path)
         // var assignment = await Assignment.findById(assn_id);
         submission_details = {
             _id : assn_id,

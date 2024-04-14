@@ -41,15 +41,17 @@ nodeJs, React, Mongoose,
 ## How to Run 
 1) Clone the repo on your device
 2) In the terminal type the following commands to run backend
+```
    cd backend
    npm i
    npm start
-
-3) In another terminal run the frontend
-    cd frontend
+```
+4) In another terminal run the frontend
+   ```
+   cd frontend
    npm i
    npm start
-
+   ```
 ## Screenshots
 
 Login Page
@@ -58,7 +60,17 @@ Login Page
 Register Page
 ![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/6fac0d0a-4144-4cc0-a1cc-89a65e3ea050)
 
+Assignment List
+![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/9a08c727-2915-47a9-9b09-64cf1f72500d)
 
+Create Assignment
+![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/44a32373-8302-469a-bf03-2aa1db59adf2)
+
+Seeing Submissions
+![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/434eda81-6271-4b73-a78e-5ccf22a2136e)
+
+Submitting File
+![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/0e16e9c6-4344-4545-9d40-3588199dfb99)
 
 
 

@@ -92,16 +92,13 @@
     background-color: #272727;
     height: 55px;
     display: flex;
-    align-items: center;
     gap: 20px;
-    padding: 0px 20px;
+    padding: 5px 20px;
     font-weight: 200;
     font-size: 20px;
 }
 
-.person:hover{
-    background-color: #3B3B3B;
-}
+
 
 .header {
     display: flex;

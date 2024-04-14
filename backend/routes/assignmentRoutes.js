@@ -70,6 +70,23 @@ assigmentRouter.post("/getAssignments", async (req,res)=>{
     }
 });
 
+assigmentRouter.post("/submitFeedback", async (req,res)=>{
+  try {
+      var feedback = req.body.feedback;
+      var roll_no = req.body.rollNumber;
+      var _id=req.body._id
+      var AC = new AssignmentController();
+
+      const assignment = await AC.submitFeedback(feedback,roll_no,_id);
+
+     // console.log(1222)
+     res.send(assignment)
+  } catch (error) {
+     // console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
+});
+
 assigmentRouter.post("/removeSub", async (req,res)=>{
   try {
       var assignmentId = req.body.assn_id;
@@ -142,6 +159,7 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
         {
           res.send("no user found")
         }
+        console.log(req.body.fileName)
         // var assignment = await Assignment.findById(assn_id);
        var submission_details = {
             _id : assn_id,
@@ -149,6 +167,7 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
                 rollNumber:roll_no,
                 name:user.fullName,
                 file:req.file.path,
+                fileName:req.body.fileName,
                 marks:null,
                 feedback:null
             }
@@ -176,10 +195,16 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
   
   assigmentRouter.get('/download', async (req, res) => {
       const fileUrl = req.query.url; // Assuming URL is passed as a query parameter
-    
+      var fileName=req.query.fileName
+      console.log(req.query)
+      console.log(fileName)
+      if(fileName==="undefined")
+      {
+        fileName=req.query.rollNumber+".txt"
+      }
       const response = await fetch(fileUrl);
       if (response.ok) {
-        res.setHeader('Content-Disposition', 'attachment; filename="download.txt"');
+        res.setHeader('Content-Disposition', 'attachment; filename="'+fileName+'"');
         response.body.pipe(res);
       } else {
         res.status(500).send('Error downloading the file');

@@ -14,6 +14,8 @@ const assignmentSchema = new mongoose.Schema({
     name:String,
     file: String,
     marks:{ type: Number, default: null },
+    fileName:String,
+    marks:Number,
     feedback:String,
     submissionTime:{ type: Date, default: Date.now }
   }

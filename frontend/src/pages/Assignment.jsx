@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './Assignment.css';
-import { Button } from '@mui/material';
+import { Button,TextField} from '@mui/material';
+import {Row} from 'react-bootstrap'
+import { IoDownload } from 'react-icons/io5';
+import { IoArrowDown,IoArrowUp } from 'react-icons/io5';
+import TextInputs from "../components/createPages/textInputs";
 
 function Assignment() {
   const navigate = useNavigate();
@@ -13,10 +17,12 @@ function Assignment() {
   const [roll_no, setRollNo] = useState(220101018);
   const [marks, setMarks] = useState(null);
   const [feedback, setFeedback] = useState("");
+  const [selectedRoll,setSelectedRoll]=useState();
 //   const [assignment_id, setAssId] = useState();
   const [role, setRole] = useState(0);
 
   const [submitted,changeSub] = useState(true);
+  const [currFeedback,setCurrFeedback]=useState();
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -55,6 +61,7 @@ function Assignment() {
         }
 
         const data = await response.json();
+        console.log(data)
         setPageData(data.ass);
         changeSub(data.submitted);
 
@@ -119,6 +126,34 @@ function Assignment() {
       alert('Error checking assignment'+error);
     }
   };
+  const submitFeedback = async () => {
+        
+    try {
+      const response = await fetch(`http://localhost:8080/assignment/submitFeedback`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "rollNumber": selectedRoll,
+          "feedback":currFeedback,
+          "_id":id
+      })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit feedback');
+      }
+
+      const data = await response.text();
+      console.log(data)
+      
+    //  setPageData(data);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error submitting Feedback'+error);
+    }
+  };
 
 
   const handleUpload = async (event) => {
@@ -166,6 +201,7 @@ function Assignment() {
     formData.append('file', file);
     formData.append("roll_no", roll_no);
     formData.append("assn_id", id);
+    formData.append('fileName', file.name);
 
     try {
       const response = await fetch('http://localhost:8080/assignment/upload', {
@@ -247,16 +283,53 @@ function Assignment() {
                     {message && <p>{message}</p>}
                 </div>
             )}
-            {role === 1 && (
-                <div id="persons">
-                    {pageData.submissions?.map((data) => (
-                        <div key={data.rollNumber} className="person">
-                            <div>{data.rollNumber}</div>
-                            <div><p>Marks: {data.marks}</p></div>
-                        </div>
-                    ))}
+        {role === 1 && (
+    <div >
+        {pageData.submissions?.map((data) => (
+            <div style={{padding:5}}>
+            <div style={{height:selectedRoll === data.rollNumber ? 50 : 50,backgroundColor:'#272727'}}
+                key={data.rollNumber}
+               className="person"
+             
+            >
+              <div style={{width:'100%',gap:90,display:'flex',flexDirection:'row'}}>
+            <div >
+                {data.rollNumber}
                 </div>
-            )}
+            <p>Marks :{data.marks}</p>
+            
+    <a href={`http://localhost:8080/assignment/download?url=${encodeURIComponent(data.file)}&rollNumber=${data.rollNumber}&fileName=${data.fileName}`} download={"sad life.c"} style={{ textDecoration: 'none',size:20}}>
+      <p  ><IoDownload  size={34}></IoDownload></p>
+    </a>
+  {selectedRoll === data.rollNumber&&(<div onClick={()=>{if(selectedRoll !== data.rollNumber){setSelectedRoll(data.rollNumber)}else
+{setSelectedRoll()
+
+}}}>  <p >Add Feedback<IoArrowUp ></IoArrowUp></p></div>)}
+
+
+  {selectedRoll !== data.rollNumber&&( <div onClick={()=>{setSelectedRoll(data.rollNumber)
+  setCurrFeedback(data.feedback)
+  }}> <p >Add Feedback<IoArrowDown  ></IoArrowDown></p></div>)}
+
+
+
+            </div>
+
+            </div>
+            {selectedRoll === data.rollNumber&&( 
+            <div style={{backgroundColor:'#272727',padding:20}}>
+        <TextInputs name="Feedback" state={currFeedback} setState={setCurrFeedback} />
+        <Button variant="outlined" color="secondary" onClick={()=>{
+submitFeedback()
+        }}>Submit Feedback</Button>
+            </div>)}
+
+                </div>
+        ))}
+    </div>
+)}
+
+
         </div>
     );
     

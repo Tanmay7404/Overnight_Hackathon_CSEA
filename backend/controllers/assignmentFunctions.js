@@ -263,6 +263,29 @@ class AssigmentController {
             }
         }
 
+        async submitFeedback(feedback,roll_no,id) {
+            try {
+                var currAssignment = await Assignment.findById(id);
+                if (!currAssignment) {
+                    throw new Error("Assignment not found");
+                }
+                var submissions  = currAssignment.submissions;
+                const index = submissions.findIndex(submission => submission.rollNumber === roll_no);
+                if (index === -1) {
+                    throw new Error("Submission not found for the provided roll number");
+                }
+                submissions[index].feedback = feedback;
+                currAssignment.submissions=submissions;
+
+                await currAssignment.save();
+                // console.log(currAssignment);
+                return;
+                
+            } catch (err) {
+                throw new Error(err);
+            }
+        }
+
         async checkSubmission(id) {
             try {
 

@@ -125,27 +125,33 @@ newSubmissions.push(nextSubmission)
             }
         }
 
-        async addSubmission(submission,assignment_id) {
+        async addSubmission(submission, assignment_id) {
             try {
-
-               const id=submission._id
-               var currAssignment = await Assignment.findById(assignment_id);
-               if (!currAssignment) {
-                throw new Error("Assignment not found");
-            }
-            if(currAssignment.submissions.findIndex({rollNumber:submission.rollNumber})!==-1)
-            {
-                throw new Error("Already submitted");
-
-            }
-            currAssignment.submissions.push(submission)
+                const currAssignment = await Assignment.findById(assignment_id);
+                if (!currAssignment) {
+                    throw new Error("Assignment not found");
+                }
+        
+                // Check if there is already a submission with the same rollNumber
+                if (currAssignment.submissions.findIndex(sub => sub.rollNumber.toString() === submission.rollNumber.toString()) !== -1) {
+                    throw new Error('Already submitted');
+                }
+                
+                
+                // Proceed with adding the submission
+                currAssignment.submissions.push(submission);
+                console.log("Submission added successfully.");
+        
+                // Save the updated assignment object
                 await currAssignment.save();
-    
-                return currAssignment._id;
-            } catch (err) {
-                throw new Error(err);
+                console.log("Assignment updated with new submission.");
+                return "Submission added successfully"; // Returning a message could be useful for API responses
+            } catch (error) {
+                console.error('Error:', error.message);
+                throw new Error(error.message); // Pass only the message if needed, or just rethrow
             }
         }
+           
         async getAssignments(id) {
             try {
                 var currAssignment = await Assignment.findById(id);

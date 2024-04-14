@@ -18,6 +18,7 @@ function App() {
     <Route path ="/login" element= {<Login></Login>}/>
     <Route path ="/Assignment" element= {<Assignment></Assignment>}/>
     <Route path ="/AssignmentList" element= {<AssignmentList></AssignmentList>}/>
+    <Route path="/Assignment/:id" element={<Assignment></Assignment>} />
     <Route path="/createAssignment" element={<CreateAssignment></CreateAssignment>}/>
     <Route path ="/homepage" element= {<div style={{backgroundColor:"black"}}></div>}/>
     

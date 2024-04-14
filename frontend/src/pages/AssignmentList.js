@@ -81,6 +81,8 @@ function AssignmentList() {
 
   const handleAssignmentClick = (assignment) => {
     setSelectedAssignment(assignment);
+  navigate(`/Assignment/${assignment.id}`);  // Navigate to the assignment detail page
+
   };
 
 

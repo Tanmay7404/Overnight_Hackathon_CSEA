@@ -1,68 +1,341 @@
-/* CreateAssignment.css */
-.create-assignment-container {
+
+
+iframe#webpack-dev-server-client-overlay{ display:none!important }
+
+:root {
+  --button-color: rgb(0, 51, 255); /* Define a CSS variable for button color */
+  --button-border-color: rgb(0, 51, 255); /* Define a CSS variable for button border color */
+
+}
+  .createPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black; 
+    overflow-y: scroll;
+    font-size: 16px;
+  }
+  
+  .contentPP {
+    width: 55vw; /* 80% of the width */
+    background-color: #272727;
     display: flex;
     flex-direction: column;
+    gap:20px;
+    padding-left: 64px;
+    padding-right: 64px;
+    /* Fills the whole height */
+  }
+ 
+  
+  .close-icon {
+    margin-left: auto; 
+
+/* Adjust right position as needed */
+  }
+  .close-icon:hover{
+    color:black
+  }
+  .fillWidthDiv {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+ 
+  }
+  .fillWidthDiv > div:nth-child(1){
+    flex: 4.5;
+  }
+  .fillWidthDiv > div:nth-child(2){
+    flex: 6.5;
+  }
+  
+  .fillWidthDiv2{
+    display: flex; 
+    height: 6%;
+    /* background-color: blue; */
+    
+  }
+
+  .fillWidthDiv3{
+    display: flex;
+    width: 70%;
+    height: 100px;
+    gap: 10px;
+  }
+  .buttonHover:hover {
+    background-color: rgb(73, 73, 73) !important;
+    color:black !important; 
+  }
+  .imageContainer{
     align-items: center;
-    padding: 20px;
-    background-color: #aaa; /* Light grey background to ensure contrast */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    width: 50%; /* Or your preferred width */
-    margin: auto; /* Center the container on the page */
-    margin-top: 50px; /* Add some margin from the top */
-}
+    margin:0;
+    flex: 0 0 100px;
+    width: 120px;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+  }
+  .buttonContainer{
+    
+    align-items: center;
+    flex: 1;
+    margin-top: auto;
+    margin-bottom: auto;
+    
+    height:40%;
+    /* min-height: fit-content; */
+    
+  }
+  .heading{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 24px;
+  }
+  .profile_pic_text{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 14px;
+    color:#dbdbdb;
 
-.create-assignment-container TextInputs,
-.create-assignment-container textarea {
-    margin: 10px 0;
-    padding: 8px;
-    width: 300px;
-    height: 100px; /* Make TextInputss take most of the container width */
-    display: block; /* Ensure each TextInputs is on a new line */
-    border: 1px solid #ccc; /* Subtle border for TextInputss */
-    border-radius: 4px; /* Slightly rounded corners for TextInputss */
-    box-sizing: border-box; /* Include padding and border in the width */
-}
-.create-assignment-container TextInputs{
-    height: 50px;
-}
-.create-assignment-container h1{
-    color: #333;
-    padding: 20px;
-}
-.create-assignment-container button {
-    padding: 10px 20px;
-    background-color: rgba(11, 11, 224, 0.649); /* Green background for the button */
-    color: white; /* White text for contrast */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px; /* Add some space above the button */
-    width: auto; /* Auto width based on content */
-}
+  }
+  .text_input{
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 16px;
+  }
+  .profile-image {
+    
+    border-radius: 50%;
+    width: 100px;
+    height: 100%;
+  }
 
-.create-assignment-container button:hover {
-    background-color: #45a049; /* Slightly darker green on hover */
-}
 
-/* Additional styles for labels to enhance form readability */
-.create-assignment-container label {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    color: #333; /* Dark color for readability */
-    font-size: 16px; /* Slightly larger font size for labels */
-}
+  .fillWidthDiv4{
+    display: flex;
+    flex-direction: column;
+    flex:content;
+    gap: 5px;    
+  }
+  
+  .fillWidthDiv5{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    
+  }
 
-/* Adjust text color and styling for better visibility and formality */
-.create-assignment-container TextInputs[type='text'],
-.create-assignment-container TextInputs[type='datetime-local'],
-.create-assignment-container textarea {
-    color: #333; /* Dark text color for better contrast */
-    font-family: Arial, sans-serif; /* Formal and readable font */
+  
+  
+.name{
+    display: flex;
+    flex: 1;
+    
+    height: fit-content;
+    /* background-color: rgb(247, 0, 255); */
     
 }
 
-.create-assignment-container label{
-    font-size: 1.4rem;
+.E-mail{
+  display: flex;
+  flex: 1;
+  height: 4%;
+  
+  /* background-color: rgb(200, 255, 0); */
+  
 }
+.email1{
+    width:35%;
+    height: fit-content;
+}
+
+.email2{
+    width:100%;
+    height: fit-content;
+
+    padding-left: 15px;
+}
+/* .textfield{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: fit-content;
+} */
+
+.textfield1{
+  display: flex;
+  flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 55px; /* you can adjust as needed */
+  height: 30px; /* you can adjust as needed */
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px; /* you can adjust as needed */
+  width: 26px; /* you can adjust as needed */
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 30px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.customButton {
+  /* Your default button styles here */
+  color: var(--button-color)  !important;;
+  border-color: var(--button-border-color)  !important;;
+}
+.blackbg{
+  display: flex;
+  flex: 1;
+  height: 8%;
+  
+  /* background-color: rgb(200, 255, 0); */
+  
+ 
+}
+
+.customButton:hover {
+  /* Your styles for hover state here */
+  filter: brightness(150%); /* Increase brightness for contrast */
+  background-color: transparent;
+}
+
+.customButton:active {
+  /* Styles for active state */
+  color: var(--button-color); /* Ensure text color remains consistent */
+  border-color: var(--button-border-color); /* Ensure border color remains consistent */
+  background-color: transparent; /* Ensure background color remains consistent */
+}
+
+/* Remove default focus outline and ensure consistency */
+.customButton:focus-visible {
+  outline: none;
+}
+
+/* Remove color change on hover and focus for outline buttons */
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover,
+.btn-outline-primary:focus,
+.btn-outline-secondary:focus,
+.btn-outline-primary:active,
+.btn-outline-secondary:active {
+  color: var(--button-color);
+  border-color: var(--button-border-color);
+  background-color: transparent;
+}
+
+
+/* position: 'absolute',
+          // top:'5px',
+          right: '5px',
+          backgroundColor: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+          color: 'black',
+          fontWeight: 'bold',
+          fontSize: '16px', */
+
+
+
+.deleteButton {
+  position: absolute;
+  /* top: 5px; */
+  right: 5px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  visibility: hidden; /* Initially hide the button */
+}
+
+.imageContainer:hover .deleteButton {
+  visibility: visible; /* Show the button when hovering over the image container */
+}
+
+  

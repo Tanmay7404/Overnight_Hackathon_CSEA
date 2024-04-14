@@ -1,10 +1,7 @@
 const e = require("express");
 const User = require("../models/userModel"); // Assuming your user model is exported as User
-<<<<<<< HEAD
 const Assignment = require("../models/assignmentModel");
 
-=======
->>>>>>> 3c1725dc2da548d9bc2fb5b1e6389c6d4395d4e7
 class UserController {
     
     async addNewUser(userDetails){
@@ -67,29 +64,47 @@ console.log(existingUser)
     }
     async findUser(userDetails) {
         try {
-            const existingUser = await User.findOne({
-                rollNumber: userDetails.roll_no,
-                role: userDetails.role
-            });
-    
-            if (!existingUser) {
-                console.log("Error: User with such role and roll Number does not exist.");
-                throw new Error("User with such role and roll Number does not exist.");
-            }
+            console.log("Finding User: ", userDetails);
+            if(userDetails.role === 0){
+
             
-            console.log(existingUser);
-            console.log('hi');
-    
-            const res = await Assignment.find(); // This assumes you want to fetch all assignments
-            const assignments = res.map(ass => {
-                console.log(ass);
-                console.log('are you?');
-                return {id: ass._id, name: ass.title, dueDate: ass.endTime};
-            });
-    
-            console.log(assignments);
-            return assignments;
-    
+                const existingUser = await User.findOne({
+                    rollNumber: userDetails.roll_no,
+                    role: userDetails.role
+                });
+        
+                if (!existingUser) {
+                    console.log("Error: User with such role and roll Number does not exist.");
+                    throw new Error("User with such role and roll Number does not exist.");
+                }
+                
+                console.log(existingUser);
+            
+                console.log('hi');
+        
+                const ass_ids= existingUser.assignments
+                // This assumes you want to fetch all assignments
+                const assignments = ass_ids.map(async (ass_id) => {
+                    const ass = await Assignment.findById(ass_id);
+                    console.log(ass);
+                    console.log('are you?');
+                    return {id: ass._id, name: ass.title, dueDate: ass.endTime};
+                });
+        
+                console.log(assignments);
+                return assignments;
+            }
+            else{
+                var assns = await Assignment.find({creator_roll:userDetails.roll_no});
+                
+                var assignments = assns.map((ass)=>{
+                    console.log(ass);
+                    console.log('are you?');
+                    return {id: ass._id, name: ass.title, dueDate: ass.endTime};
+                })
+                return assignments;
+            }
+        
         } catch (error) {
             console.log(error);
             throw new Error(error);

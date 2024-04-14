@@ -68,9 +68,9 @@ export default function Register() {
     })
     .then(response => {
       if (response.ok) {
-        localStorage.setItem("user",{rollNumber,role})
+        localStorage.setItem("user",JSON.stringify({rollNumber,role}));
         navigate("/AssignmentList/");
-    } else {
+      }else {
         return response.text().then(data => {
           throw new Error(data); // Throw an error with the error message from the response body
         });

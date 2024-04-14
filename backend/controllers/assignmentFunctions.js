@@ -1,6 +1,7 @@
 const Assignment = require("../models/assignmentModel"); // Assuming your user model is exported as User
 const {fetchTextData,compareStrings} = require ("../functions/fetchTextFromUrl.js");
 const Axios = require('axios');
+const User = require("../models/userModel.js");
 
 class AssigmentController {
         async addNewAssignment(assignment) {
@@ -13,11 +14,28 @@ class AssigmentController {
                     penaltyTime: assignment.penaltyTime,
                     language:assignment.language,
                     testCases:assignment.testCases,
+                    creator_roll: assignment.roll_no,
                     submissions: [] // Initialize submissions as an empty array
                 });
     
                 await newAssignment.save();
-    
+                for (const range of assignment.users) {
+                    const start = Number(range.name);
+                    const end = Number(range.link);
+                    for (let roll_no = start; roll_no <= end; roll_no++) {
+                        try {
+                            const user = await User.findOne({ rollNumber: roll_no, role: 0 });
+                            if (user) {
+                                user.assignments.push(newAssignment._id);
+                                await user.save();
+                            } else {
+                                console.log(`User with roll number ${roll_no} not found or not matching role.`);
+                            }
+                        } catch (error) {
+                            console.error(`Error assigning assignment to user with roll number ${roll_no}: ${error.message}`);
+                        }
+                    }
+                }
                 return newAssignment._id;
             } catch (err) {
                 throw new Error(err);

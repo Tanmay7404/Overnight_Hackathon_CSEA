@@ -39,6 +39,7 @@ userRouter.post("/getUser", async (req,res)=>{
 userRouter.post("/findUser", async (req,res)=>{
     try {
         var user_details = req.body;
+        console.log(user_details);
         var UC = new UserController();
         
         const assignments = await UC.findUser(user_details);

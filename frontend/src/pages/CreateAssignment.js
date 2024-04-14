@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import './CreateAssignment.css';
+import Links from '../components/createPages/links';
 import TextInputs from "../components/createPages/textInputs";
+import Starting from '../components/createPages/starting';
 function CreateAssignment() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    title: '',
-    question: '',
-    endTime: '',  // Assume this is the due date as a timestamp
-    testInput: '',
-    testOutput: '',
-    penaltyTime: ''
-  });
+  
 
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
@@ -19,6 +15,28 @@ function CreateAssignment() {
   const [testInput, setTestInput] = useState("");
   const [testOutput, setTestOutput] = useState("");
   const [penaltyTime, setPenaltyTime] = useState("");
+  const [values2, setValues2] = useState([{ name: '', link: '' }]);
+
+  const [roll_no, setRollNo] = useState(0);
+
+  useEffect(() => {
+    
+      const user = localStorage.getItem('user');
+      
+      const parsedUser = JSON.parse(user);
+      
+      if (!parsedUser || !parsedUser.rollNumber) {
+        navigate("/login");
+        return;
+      }
+      console.log(parsedUser);
+      
+      setRollNo(Number(parsedUser.rollNumber));
+      
+      // console.log(roll_no);
+         
+  }, []);
+
 
 //   const handleInputChange = (e) => {
 //     const { name, value } = e.target;
@@ -32,19 +50,21 @@ function CreateAssignment() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(roll_no);
     if (!title) {
       alert('Name of the assignment cannot be empty');
       
       return;
     }
-    console.log( JSON.stringify({
-        "title":title,
-        "question":question,
-        "endtime":endTime,
-        "testInput":testInput,
-        "testOutput":testOutput,
-        "penaltyTime":penaltyTime
-      }));
+    // console.log( JSON.stringify({
+    //     "title":title,
+    //     "question":question,
+    //     "endtime":endTime,
+    //     "testInput":testInput,
+    //     "testOutput":testOutput,
+    //     "penaltyTime":penaltyTime,
+    //     "users": values2
+    //   }));
     // API call to add a new assignment
     const resp =  await fetch('http://localhost:8080/assignment/addNewAssignment', {
     method: 'POST',
@@ -57,7 +77,9 @@ function CreateAssignment() {
         "endtime":endTime,
         "testInput":testInput,
         "testOutput":testOutput,
-        "penaltyTime":penaltyTime
+        "penaltyTime":penaltyTime,
+        "users": values2,
+        "roll_no": roll_no
       })
     
 })
@@ -73,7 +95,7 @@ function CreateAssignment() {
 })
 .then(data => {
     console.log('Success:', data);
-    navigate('/assignments');
+    navigate('/AssignmentList');
 })
 .catch((error) => {
     console.error('Error:', error);
@@ -83,27 +105,31 @@ function CreateAssignment() {
   };
 
   return (
-    <div className="create-assignment-container">
-      <h1>Create New Assignment</h1>
-      {/* <form onSubmit={handleSubmit}> */}
+    <div class="createPage">
+  
+      <div class="contentPP">
+    
+        <Starting text="Create Assignment"/>
 
 
-      <form onSubmit={handleSubmit}>
+        
         <TextInputs name="Name of Assignment" state={title} setState={setTitle} />
         <TextInputs name="Problem Statement" state={question} setState={setQuestion} type="textarea" />
         <TextInputs name="Due Date" state={endTime} setState={setEndTime} type="datetime-local" />
         <TextInputs name="Input Test Cases" state={testInput} setState={setTestInput} />
         <TextInputs name="Output Test Cases" state={testOutput} setState={setTestOutput} />
-        <TextInputs name="Penalty for Late Submission" state={penaltyTime} setState={setPenaltyTime} type="number" />
-        <button type="submit">Create Assignment</button>
-      </form>``
+        <TextInputs name="Penalty for Late Submission" state={penaltyTime} setState={setPenaltyTime} />
+        <Links values2={values2} setValues2={setValues2}/>
 
+        <div className="name">
+          <div className="buttonContainer" >
 
-
-
-
-
-        <label>Name of Assignment</label>
+            <Button variant="dark" className="buttonHover" style={{width:200, backgroundColor: 'black'}} onClick={handleSubmit} >
+              Create Project
+            </Button>
+          </div>
+        </div>
+                        {/* <label>Name of Assignment</label> */}
 {/* 
         <input type="text" name="title" placeholder="Name of Assignment" onChange={handleInputChange} required />
         <label>Problem Statement</label>
@@ -118,7 +144,10 @@ function CreateAssignment() {
         <input type="number" name="penaltyTime" placeholder="Penalty for Late Submission" onChange={handleInputChange} required />
         <button type="submit">Create Assignment</button>
       </form> */}
+      </div>
+
     </div>
+
   );
 }
 

@@ -9,8 +9,8 @@ function AssignmentList() {
     // { id: 2, name: 'Assignment 2', dueDate: '2023-04-20', description: 'Suspendisse sodales nunc ut enim fringilla rutrum.' },
     // { id: 3, name: 'Assignment 3', dueDate: '2023-04-25', description: 'Curabitur quis sollicitudin tortor.' },
   ]);
-  const [roll_no, setRollNo] = useState("");
-  const [role, setRole] = useState("");
+  const [roll_no, setRollNo] = useState(0);
+  const [role, setRole] = useState(0);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const navigate = useNavigate(); 
   
@@ -24,7 +24,11 @@ function AssignmentList() {
           navigate("/login");
           return;
         }
-  
+        console.log(parsedUser);
+        setRole(Number(parsedUser.role));
+        setRollNo(Number(parsedUser.rollNumber));
+        console.log(role);
+        console.log(roll_no);
         try {
           console.log(parsedUser);
           const response = await fetch('http://localhost:8080/user/findUser', {
@@ -55,7 +59,7 @@ function AssignmentList() {
       }
   
       fetchData();
-    }, [navigate]);
+    }, []);
 
 
 
@@ -81,7 +85,7 @@ function AssignmentList() {
 
 
   const handleCreateNewAssignment = () => {
-    navigate(`/create-assignment/${roll_no}`); // Changed method call from history.push to navigate
+    navigate(`/createAssignment`); // Changed method call from history.push to navigate
   };
 
   

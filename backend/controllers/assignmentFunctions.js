@@ -65,7 +65,8 @@ class AssigmentController {
                     {
 
                         const response=await this.checkCode({code:convertedFile,language:language,input:testCase.input,output:testCase.output})
-                        console.log(response+" "+testCase.output)
+                        // console.log(response+" "+testCase.output)
+                        console.log(1111,response,testCase.output)
                       if(compareStrings(response,testCase.output))
                       {a++;
                         console.log("correct")
@@ -73,7 +74,7 @@ class AssigmentController {
 
 
                 }
-                var marks=(a/testCaseSize)*100;
+                var marks=((a)*100.00)/testCaseSize;
                 var nextSubmission=submission
                 nextSubmission.marks=marks;
                 newSubmissions.push(nextSubmission)

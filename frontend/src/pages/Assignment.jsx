@@ -66,24 +66,26 @@ function Assignment() {
         changeSub(data.submitted);
 
         if (data.ass && data.ass.submissions) {
-            const submission = data.ass.submissions.find(sub => sub.rollNumber === roll_no);
+            const submission = data.ass.submissions.find(sub => Number(sub.rollNumber) === Number(parsedUser.rollNumber));
             if (submission) {
                 console.log("Marks for the submission:", submission.marks);
                 setMarks(submission.marks);
             } else {
                 console.log("No submission found for this roll number.");
-                setMarks(0); // or handle this scenario appropriately
+                setFeedback(null);
+                setMarks(null); // or handle this scenario appropriately
             }
         }
 
         if (data.ass && data.ass.submissions) {
-            const submission = data.ass.submissions.find(sub => sub.rollNumber === roll_no);
+            const submission = data.ass.submissions.find(sub => Number(sub.rollNumber) === Number(parsedUser.rollNumber));
             if (submission) {
                 console.log("Instructor's feedback", submission.feedback);
                 setFeedback(submission.feedback);
             } else {
                 console.log("No submission found for this roll number.");
-                setMarks(0); // or handle this scenario appropriately
+                setFeedback(null);
+                setMarks(null); // or handle this scenario appropriately
             }
         }
         

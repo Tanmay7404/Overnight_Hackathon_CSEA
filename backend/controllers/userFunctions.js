@@ -1,6 +1,5 @@
 const e = require("express");
 const User = require("../models/userModel"); // Assuming your user model is exported as User
-
 class UserController {
     
     async addNewUser(userDetails){

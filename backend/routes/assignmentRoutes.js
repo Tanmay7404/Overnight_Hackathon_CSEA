@@ -20,10 +20,23 @@ assigmentRouter.post("/addNewAssignment", async (req,res)=>{
        res.send("success")
     } catch (error) {
        console.error(error);
+        console.error(error);
         res.status(500).send("Internal Server Error");
     }
 });
+assigmentRouter.post("/addSubmission", async (req,res)=>{
+  try {
+      var submission_details = req.body;
+      var AC = new AssignmentController();
+      const assignment = await AC.addSubmission(submission_details.details,submission_details.assignment_id);
 
+     // console.log(1222)
+     res.send("success")
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Internal Server Error");
+  }
+});
 // assigmentRouter.post("/addSubmission", async (req,res)=>{
 //     try {
 //         var submission_details = req.body;
@@ -54,8 +67,25 @@ assigmentRouter.get("/getAssignments/:assignmentId", async (req,res)=>{
         res.status(500).send("Internal Server Error");
     }
 });
+assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
+  try {
+    var assignmentId = req.params.assignmentId;
 
+    var AC = new AssignmentController();
 
+    const assignment = await AC.checkAssignments(assignmentId);
+
+   // console.log(1222)
+   res.send("success")
+} catch (error) {
+   // console.error(error);
+    res.status(500).send("Internal Server Error");
+}
+  //getting the required data from the request 
+
+    }
+  
+  )
   
   // Assume fetchTextData is called with a URL retrieved from MongoDB
   

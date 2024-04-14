@@ -6,8 +6,10 @@ const assignmentSchema = new mongoose.Schema({
   startTime: { type: Date, default: Date.now },
   endTime:{ type: Date, default: Date.now },
   penaltyTime:Number,
+  language:String,
+  testCases:[{input:{type:String},output:{type:String}}],
   submissions: [{
-    id:{ type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    rollNumber:{type:Number,unique:true},
     name:String,
     file: String,
     marks:Number,

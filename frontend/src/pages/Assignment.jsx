@@ -1,15 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import axios from 'axios';
 import './Assignment.css';
 
-function Assignment() {
-    var roll_no = 220101099;
-    var assignment_id = null;
+function Assignment( ) {
+    var roll_no = 220101018;
+    var assignment_id = "661ba02932adf14f9e70e66d";
+    var role=0;
     const [file, setFile] = useState(null);
     const [fileName, setFileName] = useState('');
     const [message, setMessage] = useState('');
+const [pageData,setPageData]=useState({title:"",creator_roll:"",question:"",startTime:""})
+  useEffect(()=>{
+    const fetchAssignment =async()=>{
+        console.log("fetching assignment")
+    const response = await fetch('http://localhost:8080/assignment/getAssignments/'+assignment_id, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      });
+var data=await response.json()
+setPageData(data)
+console.log(data)
+  }
+  fetchAssignment()
+}
 
   
+  ,[])
   const handleUpload = async (event) => {
     event.preventDefault();
     if (file) {
@@ -17,12 +35,12 @@ function Assignment() {
     }
   };
 
+
   const uploadFile = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
     formData.append("roll_no",roll_no);
     formData.append("assn_id",assignment_id);
-    console.log(1);
     try{
         const response = await fetch('http://localhost:8080/assignment/upload', {
             method: 'POST',
@@ -59,14 +77,12 @@ function Assignment() {
     return (
         <div className="upload-container">
             <div className="assignment-show">
-                <h1>Assignment name</h1>
-                <div className="question">{`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sodales nunc ut enim fringilla rutrum. Morbi ut suscipit arcu. Vestibulum suscipit ipsum ac libero finibus, ut consequat est convallis. Quisque posuere non nunc a pretium. Nulla molestie ipsum est, gravida accumsan velit luctus ut. Curabitur quis sollicitudin tortor. Nunc lacinia justo ac eros aliquet porta. Integer tincidunt ipsum id ligula varius, non vulputate nisl blandit. Integer nec molestie dui. Integer eget scelerisque quam. Praesent urna dui, venenatis nec facilisis quis, mollis convallis dolor. In tristique eros vitae elit mollis rhoncus. Morbi neque mauris, aliquet facilisis faucibus nec, dictum sit amet mauris. Aenean aliquam consequat ante at tincidunt. Donec eget sapien quam. Duis sed tortor non odio condimentum cursus.            
-Pellentesque eros enim, faucibus quis leo vitae, congue malesuada neque. Aenean in erat vel tellus posuere rhoncus. Suspendisse potenti. Aenean accumsan condimentum cursus. Etiam eu dapibus justo. Maecenas eget placerat felis, a lobortis velit. Fusce sapien ipsum, sodales quis dolor nec, mattis sollicitudin lectus. Duis quis ligula vestibulum, sagittis eros vitae, faucibus turpis. Cras sit amet lectus quis dui lacinia rhoncus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla in congue dui. Proin id pellentesque ex. Morbi lectus nisi, bibendum ac tincidunt et, convallis id nibh. In rutrum posuere urna. Nunc arcu justo, accumsan nec hendrerit nec, pretium eu urna. Mauris eget nulla ut risus dictum lacinia in eu nunc.
+                <h1>               { pageData.title}
+</h1>
+                <div className="question">
+               { pageData.question}
 
-Curabitur ultrices erat id nulla mollis, blandit maximus nulla dignissim. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet felis feugiat, tincidunt elit sit amet, sagittis sem. Aliquam erat volutpat. Morbi hendrerit turpis nec nibh efficitur, id rhoncus dui facilisis. Aliquam auctor magna eu elit tincidunt, in venenatis elit tristique. Donec tincidunt leo nibh, nec iaculis nulla viverra ac.
-
-Cras ornare pharetra arcu at congue. Morbi eleifend euismod nibh sed euismod. Sed ut sem sit amet tortor consectetur consequat. Vivamus nec lobortis est. Mauris euismod faucibus laoreet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut ultricies ante non odio iaculis egestas. Suspendisse potenti. Curabitur odio nisi, euismod sit amet viverra nec, euismod ac turpis. Maecenas iaculis semper augue feugiat ultricies. Nulla et aliquam massa, eu elementum sem.`}</div>
-                
+                </div>
             </div>
             <h2>File Submission</h2>
             <div className="submission">

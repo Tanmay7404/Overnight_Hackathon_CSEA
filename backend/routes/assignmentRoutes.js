@@ -8,6 +8,7 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const fetch = require('node-fetch');
 const User = require ("../models/userModel.js");
 const Assignment = require("../models/assignmentModel.js");
+const UserController = require("../controllers/userFunctions.js");
 
 
 assigmentRouter.post("/addNewAssignment", async (req,res)=>{
@@ -61,7 +62,7 @@ assigmentRouter.get("/getAssignments/:assignmentId", async (req,res)=>{
         const assignment = await AC.getAssignments(assignmentId);
 
        // console.log(1222)
-       res.send("success")
+       res.send(assignment)
     } catch (error) {
        // console.error(error);
         res.status(500).send("Internal Server Error");
@@ -112,16 +113,21 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
     if (!req.file) {
       return res.status(400).send('No file uploaded.');
     }
-    var roll_no = Number(req.body.roll_no);
+    
+    var roll_no = (req.body.roll_no);
     var assn_id = req.body.assn_id;
     try{
         var user =await User.findOne({rollNumber: roll_no,role: 0});
         console.log(req.file.path)
+        if(!user)
+        {
+          res.send("no user found")
+        }
         // var assignment = await Assignment.findById(assn_id);
-        submission_details = {
+       var submission_details = {
             _id : assn_id,
             details : {
-                id:user._id,
+                rollNumber:roll_no,
                 name:user.fullName,
                 file:req.file.path,
                 marks:null,
@@ -129,11 +135,16 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
             }
 
         }
-        const submission = await AC.addSubmission(submission_details);
+        console.log(user)
+        console.log(submission_details)
+        var AC = new AssignmentController();
+
+        const submission = await AC.addSubmission(submission_details.details,submission_details._id);
         // assignment.submissions.push({id:user._id,name:user.fullName,file:req.file.path,marks:null,feedback:null});
         // await assignment.save();
         res.send({ url: req.file.path });  // Send the URL of the uploaded file back
     } catch(err){
+      console.log(err)
         res.send(err);
     }
     

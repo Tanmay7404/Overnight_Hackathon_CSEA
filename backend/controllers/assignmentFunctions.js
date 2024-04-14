@@ -133,6 +133,11 @@ newSubmissions.push(nextSubmission)
                if (!currAssignment) {
                 throw new Error("Assignment not found");
             }
+            if(currAssignment.submissions.findIndex({rollNumber:submission.rollNumber})!==-1)
+            {
+                throw new Error("Already submitted");
+
+            }
             currAssignment.submissions.push(submission)
                 await currAssignment.save();
     
@@ -143,10 +148,10 @@ newSubmissions.push(nextSubmission)
         }
         async getAssignments(id) {
             try {
-
-               
-            
-                
+                var currAssignment = await Assignment.findById(id);
+                if (!currAssignment) {
+                 throw new Error("Assignment not found");
+             }
     
                 return currAssignment;
             } catch (err) {

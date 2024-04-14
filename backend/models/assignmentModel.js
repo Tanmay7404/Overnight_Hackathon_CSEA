@@ -10,7 +10,7 @@ const assignmentSchema = new mongoose.Schema({
   language:String,
   testCases:[{input:{type:String},output:{type:String}}],
   submissions: [{
-    rollNumber:{type:Number,unique:true},
+    rollNumber:{type:Number},
     name:String,
     file: String,
     marks:Number,

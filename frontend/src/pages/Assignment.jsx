@@ -9,8 +9,9 @@ function Assignment() {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [message, setMessage] = useState('');
-  const [pageData, setPageData] = useState({ title: "", creator_roll: "", question: "", startTime: "" });
+  const [pageData, setPageData] = useState({ title: "", creator_roll: "", question: "", startTime: "", submissions: []});
   const [roll_no, setRollNo] = useState(220101018);
+  const [marks, setMarks] = useState(null);
 //   const [assignment_id, setAssId] = useState();
   const [role, setRole] = useState(0);
 
@@ -33,6 +34,7 @@ function Assignment() {
     setRollNo(Number(parsedUser.rollNumber));
     console.log(role);
     console.log(roll_no);
+    
     const fetchAssignment = async () => {
         
       try {
@@ -54,6 +56,23 @@ function Assignment() {
         const data = await response.json();
         setPageData(data.ass);
         changeSub(data.submitted);
+
+        if (data.ass && data.ass.submissions) {
+            const submission = data.ass.submissions.find(sub => sub.rollNumber === roll_no);
+            if (submission) {
+                console.log("Marks for the submission:", submission.marks);
+                setMarks(submission.marks);
+            } else {
+                console.log("No submission found for this roll number.");
+                setMarks(0); // or handle this scenario appropriately
+            }
+        }
+        
+        // const roll_marks = kid.marks;
+        // console.log(roll_marks);
+
+        
+
       } catch (error) {
         console.error('Error:', error);
         alert('Error Fetching assignment');
@@ -80,7 +99,8 @@ function Assignment() {
 
       const data = await response.text();
       console.log(data)
-      
+      alert("Auto Grading Completed")
+
     //  setPageData(data);
     } catch (error) {
       console.error('Error:', error);
@@ -159,7 +179,7 @@ function Assignment() {
 
 
 
-
+  
 
 
 
@@ -201,6 +221,7 @@ function Assignment() {
                             <button type="submit" className="btn-hand-in">{!submitted? "Hand In": "Undo Hand In"}</button>
                         </div>
                     </form>
+                    <div className="marks-col">{!submitted? "Not Submitted": !marks?"Not Graded":`${marks}/100`}</div>
                     {message && <p>{message}</p>}
                 </div>
             )}

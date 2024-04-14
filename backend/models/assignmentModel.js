@@ -13,7 +13,7 @@ const assignmentSchema = new mongoose.Schema({
     rollNumber:{type:Number},
     name:String,
     file: String,
-    marks:Number,
+    marks:{ type: Number, default: null },
     feedback:String,
     submissionTime:{ type: Date, default: Date.now }
   }

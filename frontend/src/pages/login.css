@@ -7,7 +7,7 @@ iframe#webpack-dev-server-client-overlay{ display:none!important }
   --button-border-color: rgb(0, 51, 255); /* Define a CSS variable for button border color */
 
 }
-  .createPage {
+  .loginPage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,9 +16,23 @@ iframe#webpack-dev-server-client-overlay{ display:none!important }
     height: 100vh;
   }
   
-  .contentPP {
-    /* height: 100vh; */
-    width: 55vw; /* 80% of the width */
+  .loginPP {
+    height: 50vh;
+    width: 50vw; /* 80% of the width */
+    background-color: #272727;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
+    padding-left: 64px;
+    padding-right: 64px;
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom:20px;
+    /* Fills the whole height */
+  }
+  .loginPP2 {
+    height: 80vh;
+    width: 50vw; /* 80% of the width */
     background-color: #272727;
     display: flex;
     flex-direction: column;
@@ -80,15 +94,15 @@ iframe#webpack-dev-server-client-overlay{ display:none!important }
     padding-right: 10px;
     
   }
-  .buttonContainer{
+  .loginbuttonContainer{
     
     align-items: center;
     flex: 1;
-    margin-top: auto;
-    margin-bottom: auto;
     
-    height:40%;
+    height: 100%;
     /* min-height: fit-content; */
+    display: flex;
+    justify-content: center;
     
   }
   .heading{
@@ -123,11 +137,12 @@ iframe#webpack-dev-server-client-overlay{ display:none!important }
     gap: 5px;    
   }
   
-  .fillWidthDiv5{
+  .loginfillWidthDiv5{
     display: flex;
     width: 100%;
-    gap: 20px;
-    
+    gap: 50px;
+    justify-content: space-around;
+    height: 35px;
   }
 
   
@@ -137,7 +152,7 @@ iframe#webpack-dev-server-client-overlay{ display:none!important }
     flex: 1;
     
     height: fit-content;
-    /* background-color: rgb(247, 0, 255); */
+  
     
 }
 

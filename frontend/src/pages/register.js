@@ -105,14 +105,16 @@ window.alert(error.message)
       // };
 
   return (
-  <div class="createPage">
+    <div class="loginPage">
   
-    <div class="contentPP" >
+    <div class="loginPP2" >
       {/* <div className="fillWidthDiv">
         
       </div> */}
 
-      <Starting text="Register"/>
+        <div className="fillWidthDiv2">
+            <h3 className="heading" style={{marginLeft:"auto",marginRight:"auto", fontSize:"40px"}}><b>REGISTER</b></h3>
+        </div>
       
       {/* <ProfilePicAdd formData={formData} setFormData={setFormData} /> */}
       
@@ -124,7 +126,7 @@ window.alert(error.message)
 
       {/* </div> */}
       <TextInputs name="Full Name" state={username} setState={setUS} fixed={false}/>
-      <TextInputs name="Password" state={password} setState={setPassword} fixed={false}/>
+      <TextInputs name="Password" state={password} setState={setPassword} fixed={false} ttype = "password"/>
 
       <div className="fillWidthDiv">
       <TextInputs name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false}/>
@@ -133,12 +135,12 @@ window.alert(error.message)
         </div>
 
       <TextInputs name="Email" state={email} setState={setEmail} fixed={false}/>
-<div className="Email">
+      <div className="loginfillWidthDiv5">
         <Form.Check
           type="radio"
           label="Student"
           id="radio-option1"
-          value="option1"
+          value="option12"
           checked={role === 0} // Set the checked state based on selectedOption
           onChange={()=>{handleRadioChange(0)}} // Handle radio button change
         />
@@ -146,78 +148,19 @@ window.alert(error.message)
           type="radio"
           label="Instructor"
           id="radio-option2"
-          value="option2"
+          value="option22"
           checked={role===1} // Set the checked state based on selectedOption
           onChange={()=>{handleRadioChange(1)}} // Handle radio button change
         />
     </div>
-      {/* <SelectTags text = "Selected Skills" selectedTags={selectedTags} setSelectedTags={setSelectedTags} /> */}
-     
-      
-
-      {/* <div className="fillWidthDiv4">
-        <div className="E-mail">
-          <p className="text_input" >Social Links</p>
-        </div>
-      <div className="name">
-        <div className="email1">
-        <p style={{color:'white'}}>LinkedIn</p>
-      </div>
-      <div className="email2">
-        <TextField fullWidth id="fullWidth" size="small"  sx={style}
-        value={formData.linkedinLink}
-        onChange={(event) => setFormData({ ...formData, linkedinLink: event.target.value })}
-        InputProps={{
-          style: {
-            color: 'white', // Text color
-            borderColor: 'white', // Border color
-            backgroundColor: '#3B3B3B', 
-            // Background color
-          },
-          placeholder:"Type here"
-        }} // Change text color
-        InputLabelProps={{ style: { color: 'gray' } }} />
-      </div>
-    </div>
-    <div className="space"></div>
-    <div className="name">
-      <div className="email1">
-        <p style={{color:'white'}}>Instagram</p>
-      </div>
-      <div className="email2"><TextField fullWidth id="fullWidth" size="small"  sx={style}
-      value={formData.instagramLink}
-      onChange={(event) => setFormData({ ...formData, instagramLink: event.target.value })}
-    InputProps={{
-        style: {
-            
-          color: 'white', // Text color
-          borderColor: 'white', // Border color
-          backgroundColor: '#3B3B3B', 
-         
-          // Background color
-        },
-        placeholder:"Type here"
-      }} // Change text color
-     InputLabelProps={{ style: { color: 'gray' } }} /></div>
-</div>
-<div className="space">
-
-</div>
-
-
-
-
-
-
-</div> */}
-<div className="name">
-  <div className="buttonContainer" >
-    <Button variant="dark" className="buttonHover" style={{width:200,height:30, backgroundColor: 'black'}} onClick={()=>{handleSubmit()}} >
-      Done
+<div className="loginfillWidthDiv5">
+  <div className="loginbuttonContainer" >
+    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"100%", backgroundColor: 'black'}} onClick={handleSubmit} >
+      Submit
     </Button>
   </div>
-  <div className="buttonContainer" >
-    <Button variant="dark" className="buttonHover" style={{width:200,height:30, backgroundColor: 'black'}} onClick={()=>{navigate("/login")}} >
+  <div className="loginbuttonContainer" >
+    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"100%", backgroundColor: 'black'}} onClick={()=>{navigate("/login")}} >
       Login
     </Button>
   </div>

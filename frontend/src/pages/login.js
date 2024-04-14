@@ -15,7 +15,7 @@ import  {useParams,useNavigate} from 'react-router-dom'
 // import ProfilePicAdd from "../components/createPages/ProfilePic";
 import TextInputs from "../components/createPages/textInputs";
 // import SelectTags from "../components/createPages/selectTags";
-import Starting from "../components/createPages/starting";
+
 
 
 export default function Login() {
@@ -63,20 +63,12 @@ window.alert(error.message)
   };
 
     
-  const style = {
-    "& .MuiOutlinedInput-root": {
-        "&.Mui-focused fieldset": {
-        borderColor: "white"
-        }
-    },
-}
+  
 const handleRadioChange = (e) => {
     setRole(e);
   };
 
-  var [username,setUS] = useState("");
-  var [department,setDept] = useState("");
-  var [email,setEmail] = useState("");
+  
   var [password,setPassword] = useState("");
   var [role,setRole] = useState(0);
   var [rollNumber,setRollNumber] = useState("");
@@ -102,14 +94,16 @@ const handleRadioChange = (e) => {
       // };
 
   return (
-  <div class="createPage">
+  <div class="loginPage">
   
-    <div class="contentPP" >
+    <div class="loginPP" >
       {/* <div className="fillWidthDiv">
         
       </div> */}
 
-      <Starting text="Login"/>
+        <div className="fillWidthDiv2">
+            <h3 className="heading" style={{marginLeft:"auto",marginRight:"auto", fontSize:"40px"}}><b>LOGIN</b></h3>
+        </div>
       
       {/* <ProfilePicAdd formData={formData} setFormData={setFormData} /> */}
       
@@ -122,13 +116,13 @@ const handleRadioChange = (e) => {
       {/* </div> */}
 
    
-        <TextInputs name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false}/>
+        <TextInputs name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false} />
 
-        <TextInputs name="Password"  state={password} setState={setPassword} fixed={false}/>
+        <TextInputs name="Password"  state={password} setState={setPassword} fixed={false} ttype = "password"/>
      
       
 
-<div className="Email">
+<div className="loginfillWidthDiv5">
         <Form.Check
           type="radio"
           label="Student"
@@ -146,14 +140,14 @@ const handleRadioChange = (e) => {
           onChange={()=>{handleRadioChange(1)}} // Handle radio button change
         />
     </div>
-<div className="name">
-  <div className="buttonContainer" >
-    <Button variant="dark" className="buttonHover" style={{width:200,height:30, backgroundColor: 'black'}} onClick={handleSubmit} >
-      Done
+<div className="loginfillWidthDiv5">
+  <div className="loginbuttonContainer" >
+    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"100%", backgroundColor: 'black'}} onClick={handleSubmit} >
+      Submit
     </Button>
   </div>
-  <div className="buttonContainer" >
-    <Button variant="dark" className="buttonHover" style={{width:200,height:30, backgroundColor: 'black'}} onClick={()=>{navigate("/register")}} >
+  <div className="loginbuttonContainer" >
+    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"100%", backgroundColor: 'black'}} onClick={()=>{navigate("/register")}} >
       Register
     </Button>
   </div>

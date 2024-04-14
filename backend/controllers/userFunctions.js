@@ -1,5 +1,6 @@
 const e = require("express");
 const User = require("../models/userModel"); // Assuming your user model is exported as User
+const Assignment = require("../models/assignmentModel");
 
 class UserController {
     
@@ -61,6 +62,37 @@ console.log(existingUser)
             throw new Error(error);
         }
     }
+    async findUser(userDetails) {
+        try {
+            const existingUser = await User.findOne({
+                rollNumber: userDetails.roll_no,
+                role: userDetails.role
+            });
+    
+            if (!existingUser) {
+                console.log("Error: User with such role and roll Number does not exist.");
+                throw new Error("User with such role and roll Number does not exist.");
+            }
+            
+            console.log(existingUser);
+            console.log('hi');
+    
+            const res = await Assignment.find(); // This assumes you want to fetch all assignments
+            const assignments = res.map(ass => {
+                console.log(ass);
+                console.log('are you?');
+                return {id: ass._id, name: ass.title, dueDate: ass.endTime};
+            });
+    
+            console.log(assignments);
+            return assignments;
+    
+        } catch (error) {
+            console.log(error);
+            throw new Error(error);
+        }
+    }
+    
 }
 
 module.exports = UserController;

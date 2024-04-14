@@ -27,12 +27,12 @@ export default function Login() {
   
   const handleSubmit = async() => {
     // Assuming you have an API endpoint to send the data
-    if(formData.username==='')
+    if(rollNumber==='')
     {
       window.alert('username cannot be empty ' );
       return
     }
-    console.log(formData)
+    // console.log(formData)
    await fetch('http://localhost:8080/user/getUser', {
       method: 'POST',
       headers: {
@@ -46,7 +46,8 @@ export default function Login() {
     })
     .then(response => {
         if (response.ok) {
-            navigate("/sucesslogin/" + formData.rollNumber);
+            localStorage.setItem("user",JSON.stringify({rollNumber,role}));
+            navigate("/AssignmentList/");
         } else {
           return response.text().then(data => {
             throw new Error(data); // Throw an error with the error message from the response body
@@ -80,17 +81,17 @@ const handleRadioChange = (e) => {
   var [role,setRole] = useState(0);
   var [rollNumber,setRollNumber] = useState("");
 
-  const [formData, setFormData] = useState({
-    fullname: username,
-    email: email,
-    department:department,
-    password:password,
-    // profilePictureUrl: "",
-    // profilePictureFilename: "",
-    // skills: [],
-    // projects: [],
-    // coursesCompleted: []
-  });
+  // const [formData, setFormData] = useState({
+  //   fullname: username,
+  //   email: email,
+  //   department:department,
+  //   password:password,
+  //   // profilePictureUrl: "",
+  //   // profilePictureFilename: "",
+  //   // skills: [],
+  //   // projects: [],
+  //   // coursesCompleted: []
+  // });
 
 
 
@@ -123,7 +124,7 @@ const handleRadioChange = (e) => {
    
         <TextInputs name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false}/>
 
-        <TextInputs name="Password" state={password} setState={setPassword} fixed={false}/>
+        <TextInputs name="Password"  state={password} setState={setPassword} fixed={false}/>
      
       
 

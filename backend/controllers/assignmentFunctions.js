@@ -1,5 +1,7 @@
 const Assignment = require("../models/assignmentModel"); // Assuming your user model is exported as User
 const {fetchTextData,compareStrings} = require ("../functions/fetchTextFromUrl.js");
+const {bakersDup} = require ("../functions/plagiagrismFunc.js");
+
 const Axios = require('axios');
 const User = require("../models/userModel.js");
 
@@ -49,15 +51,16 @@ class AssigmentController {
                  const language=currAssignment.language
 const testCaseSize=testCases.length
 var newSubmissions=submissions;
+var stringArr=[]
                 for (const submission of submissions)
                 {
                     const file=submission.file
                     const convertedFile=await fetchTextData(file)
+                    stringArr.push(convertedFile)
                     var a=0.00;
                     for(const testCase of testCases)
                     {
 
-                       
                         const response=await this.checkCode({code:convertedFile,language:language,input:testCase.input,output:testCase.output})
                         console.log(response+" "+testCase.output)
                       if(compareStrings(response,testCase.output))
@@ -74,7 +77,13 @@ nextSubmission.marks=marks;
 newSubmissions.push(nextSubmission)
                     console.log(marks)
                 }
-                currAssignment.submissions=newSubmissions
+
+const checkedAssignments =await this.checkPlagiarism(newSubmissions,stringArr)
+
+                currAssignment.submissions=checkedAssignments
+
+ 
+
                 await currAssignment.save()
 
                 
@@ -87,6 +96,46 @@ newSubmissions.push(nextSubmission)
                 throw new Error(err);
             }
         }
+
+        async checkPlagiarism(newAssignments,stringArr) {
+            try {
+                
+                var assignments=newAssignments;
+                const language=newAssignments[0].language
+             
+                    for (let i = 0; i < submissions.length-1; i++) {
+                      
+                        var cheated=false;
+                    
+                        for (let j = i+1; j < submissions.length; j++) {
+                
+cheated=bakersDup(stringArr[i],stringArr[j],language);
+if(cheated===true)
+{
+    assignments[i].marks=0;
+    break;
+}
+
+
+                            // Your inner loop logic here...
+                        }
+
+                    
+                    }
+                
+             
+                
+
+    
+                //await newAssignment.save();
+    
+                return assignments;
+            } catch (err) {
+                throw new Error(err);
+            }
+        }
+
+
         async checkCode(details) {
             try {
                 let code = details.code; 

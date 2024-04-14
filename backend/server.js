@@ -37,6 +37,7 @@ async function initialize() {
 
 
 
+
 //ROUTES IMPORT
 const userRoutes = require("./routes/userRoutes.js");
 app.use("/user",userRoutes);
@@ -51,6 +52,9 @@ const port = process.env.port || 8080;
 initialize().then(() => {
     // Start the server after the database initialization
   server.listen(port, function () {
+  // Example usage
+
+
         console.log(`Server Started on Port ${port}`);
     });
 }).catch(error => {

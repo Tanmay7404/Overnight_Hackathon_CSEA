@@ -91,30 +91,71 @@ function Assignment() {
     }
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-    setFileName(e.target.files[0].name);
-    setMessage('');
-  };
 
-  return (
-    <div className="upload-container">
-      <div className="assignment-show">
-        <h1>{pageData.title}</h1>
-        <div className="question">{pageData.question}</div>
-      </div>
-      <h2>File Submission</h2>
-      <div className="submission">
-        <form onSubmit={handleUpload}>
-          <input type="file" id="file-input" style={{ display: 'none' }} onChange={handleFileChange} />
-          <label htmlFor="file-input" className="btn-attach">Attach File</label>
-          {fileName && <span className="file-name">{fileName}</span>}
-          <button type="submit" className="btn-hand-in">Hand In</button>
-        </form>
-        {message && <p>{message}</p>}
-      </div>
+
+
+
+
+
+    
+    const handleFileChange = (e) => {
+        setFile(e.target.files[0]);
+        setFileName(e.target.files[0].name);
+        setMessage('');
+    };
+
+    
+
+    return (
+        <div className="upload-container">
+            <div className="assignment-show">
+                <h1>               { pageData.title}
+</h1>
+                <div className="question">
+               { pageData.question}
+
+                </div>
+            </div>
+            <h2>File Submission</h2>
+
+            {role === 0 && (
+
+            <div className="submission">
+            <form onSubmit={handleUpload}>
+                <input type="file" id="file-input" style={{ display: 'none' }} onChange={handleFileChange} />
+                <label htmlFor="file-input" className="btn-attach">Attach File</label>
+                {fileName && <span className="file-name">{fileName}</span>}
+                <button type="submit" className="btn-hand-in">Hand In</button>
+            </form>
+
+            {message && <p>{message}</p>}
+        </div>)}
+        {role === 1 && (
+    <div id="persons">
+        {pageData.submissions?.map((data) => (
+            <div>
+            <div
+                key={data.rollNumber}
+                className="person"
+                onClick={() =>{} }
+            >
+            <div>
+                {data.rollNumber}
+                </div>
+                <div >
+            <p>Marks :{data.marks}</p>
+            
+                </div>
+            </div>
+            
+                </div>
+        ))}
     </div>
-  );
+)}
+
+
+        </div>
+    );
 }
 
 export default Assignment;

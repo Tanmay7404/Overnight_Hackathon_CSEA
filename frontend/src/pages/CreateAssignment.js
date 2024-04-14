@@ -38,15 +38,19 @@ function CreateAssignment() {
   }, []);
 
 
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
 //     // Handle date conversion to ISO string right away if it's the endTime
-//     const newValue = name === 'endTime' ? new Date(value).toISOString() : value;
+    const newValue = name === 'endTime' ? new Date(value).toISOString() : value;
+    const timePart = value.split('T')[1];
+    // state = {endTime};
+    console.log(timePart);
+    setEndTime(newValue);
 //     setFormData(prevState => ({
 //       ...prevState,
 //       [name]: newValue
-//     }));
-//   };
+    // }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -115,7 +119,8 @@ function CreateAssignment() {
         
         <TextInputs name="Name of Assignment" state={title} setState={setTitle} />
         <TextInputs name="Problem Statement" state={question} setState={setQuestion} type="textarea" />
-        <TextInputs name="Due Date" state={endTime} setState={setEndTime} type="datetime-local" />
+        <input type="datetime-local" name="endTime" onChange={handleInputChange} required />
+        {/* <TextInputs name="Due Date" state={endTime} setState={setEndTime} type="datetime-local" /> */}
         <TextInputs name="Input Test Cases" state={testInput} setState={setTestInput} />
         <TextInputs name="Output Test Cases" state={testOutput} setState={setTestOutput} />
         <TextInputs name="Penalty for Late Submission" state={penaltyTime} setState={setPenaltyTime} />

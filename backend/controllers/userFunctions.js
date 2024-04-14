@@ -10,6 +10,7 @@ class UserController {
 console.log(userDetails)
             const existingUser = await User.findOne({
                 rollNumber: userDetails.rollNumber,
+
                 role: userDetails.role
             });
             console.log("here2"+ userDetails.rollNumber+" "+userDetails.role)
@@ -80,17 +81,14 @@ console.log(existingUser)
                 
                 console.log(existingUser);
             
-                console.log('hi');
-        
-                const ass_ids= existingUser.assignments
-                // This assumes you want to fetch all assignments
-                const assignments = ass_ids.map(async (ass_id) => {
+                console.log('hi');  
+
+                
+                const assignments = await Promise.all(existingUser.assignments.map(async (ass_id) => {
                     const ass = await Assignment.findById(ass_id);
-                    console.log(ass);
-                    console.log('are you?');
-                    return {id: ass._id, name: ass.title, dueDate: ass.endTime};
-                });
-        
+                    return { id: ass._id, name: ass.title, dueDate: ass.endTime };
+                }));
+    
                 console.log(assignments);
                 return assignments;
             }
@@ -102,6 +100,7 @@ console.log(existingUser)
                     console.log('are you?');
                     return {id: ass._id, name: ass.title, dueDate: ass.endTime};
                 })
+                console.log(assignments);
                 return assignments;
             }
         

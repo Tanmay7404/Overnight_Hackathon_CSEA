@@ -9,9 +9,10 @@ function Assignment() {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [message, setMessage] = useState('');
-  const [pageData, setPageData] = useState({ title: "", creator_roll: "", question: "", startTime: "", submissions: []});
+  const [pageData, setPageData] = useState({ title: "", creator_roll: "", question: "", startTime: "", submissions: [], feedback:""});
   const [roll_no, setRollNo] = useState(220101018);
   const [marks, setMarks] = useState(null);
+  const [feedback, setFeedback] = useState("");
 //   const [assignment_id, setAssId] = useState();
   const [role, setRole] = useState(0);
 
@@ -62,6 +63,17 @@ function Assignment() {
             if (submission) {
                 console.log("Marks for the submission:", submission.marks);
                 setMarks(submission.marks);
+            } else {
+                console.log("No submission found for this roll number.");
+                setMarks(0); // or handle this scenario appropriately
+            }
+        }
+
+        if (data.ass && data.ass.submissions) {
+            const submission = data.ass.submissions.find(sub => sub.rollNumber === roll_no);
+            if (submission) {
+                console.log("Instructor's feedback", submission.feedback);
+                setFeedback(submission.feedback);
             } else {
                 console.log("No submission found for this roll number.");
                 setMarks(0); // or handle this scenario appropriately
@@ -197,60 +209,57 @@ function Assignment() {
 
       return (
         <div className="upload-container">
-            <button className="logout-btn" onClick={handleLogOut}>
-                Log Out
-            </button>
-            <div className="assignment-show">
+            <div className="header">
                 <h1>{pageData.title}</h1>
+                <button className="logout-btn" onClick={handleLogOut}>
+                    Log Out
+                </button>
+            </div>
+            <div className="assignment-show">
                 <div className="question">{pageData.question}</div>
             </div>
-            <div style={{display:'flex',justifyContent: 'space-between' }} >
-            <h2>File Submission</h2>
-            {role==1&&(
-<Button variant="contained" color="success" onClick={()=>{checkAssignments()}}>Auto-Grade</Button>)}
-</div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <h2>File Submission</h2>
+                {role == 1 && (
+                    <Button variant="contained" color="success" onClick={() => { checkAssignments() }}>Auto-Grade</Button>
+                )}
+            </div>
             {role === 0 && (
                 <div className="submission">
                     <form onSubmit={handleUpload}>
-                        <div className="input-button">
-                            <input type="file" id="file-input" style={{ display: 'none' }} onChange={handleFileChange} />
-                            <label htmlFor="file-input" className="btn-attach">Attach File</label>
-                        </div>
-                        <div className="hand-in-button">
-                            {fileName && <span className="file-name">{fileName}</span>}
-                            <button type="submit" className="btn-hand-in">{!submitted? "Hand In": "Undo Hand In"}</button>
+                        <div className="sub-buts">
+                            <div className="input-button">
+                                <input type="file" id="file-input" style={{ display: 'none' }} onChange={handleFileChange} />
+                                <label htmlFor="file-input" className="btn-attach">Attach File</label>
+                            </div>
+                            <div className="hand-in-button">
+                                {fileName && <span className="file-name">{fileName}</span>}
+                                <button type="submit" className="btn-hand-in">{!submitted ? "Hand In" : "Undo Hand In"}</button>
+                            </div>
                         </div>
                     </form>
-                    <div className="marks-col">{!submitted? "Not Submitted": !marks?"Not Graded":`${marks}/100`}</div>
+                    <div className="marks-col">
+                        {!submitted ? "Not Submitted" : (marks === null) ? "Not Graded" : `${marks}/100`}
+                    </div>
+                    <div className="feedback-block">
+                        {(marks === null) ? "No Feedback Yet" : `Instructor's Feedback: ${feedback}`}
+                    </div>
                     {message && <p>{message}</p>}
                 </div>
             )}
-        {role === 1 && (
-    <div id="persons">
-        {pageData.submissions?.map((data) => (
-            <div >
-            <div style={{display:'flex',flexDirection: 'column',height:100}}
-                key={data.rollNumber}
-                className="person"
-                onClick={() =>{} }
-            >
-            <div >
-                {data.rollNumber}
+            {role === 1 && (
+                <div id="persons">
+                    {pageData.submissions?.map((data) => (
+                        <div key={data.rollNumber} className="person">
+                            <div>{data.rollNumber}</div>
+                            <div><p>Marks: {data.marks}</p></div>
+                        </div>
+                    ))}
                 </div>
-                <div >
-            <p>Marks :{data.marks}</p>
-            
-                </div>
-            </div>
-            
-                </div>
-        ))}
-    </div>
-)}
-
-
+            )}
         </div>
     );
+    
 }
 
 export default Assignment;

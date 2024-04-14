@@ -114,7 +114,9 @@ class AssigmentController {
                             if(cheated===true)
                             {
                                 assignments[i].marks=0;
+                                assignments[i].feedback = 'Plagarism Detected'
                                 assignments[j].marks=0;
+                                assignments[j].feedback = 'Plagarism Detected'
 
                                 break;
                             }

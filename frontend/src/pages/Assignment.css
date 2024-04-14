@@ -63,14 +63,7 @@ body {
     border-radius: 50px;
     /* Slightly muted green for messages */
   }
-  .upload-container.logout-btn{
-    background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+
 
   .submission {
     /* position: relative; */
@@ -135,4 +128,57 @@ body {
     margin-bottom: 10px;
     font-size: 16px;
     color: #aaa; /* Light grey color for file name to make it stand out less */
+}
+
+.submission {
+    /* display: flex; */
+    flex-direction: column; /* Changes the flex direction to column for vertical stacking */
+}
+
+.input-button, .hand-in-button, .marks-col {
+    display: flex;
+/* Aligns items vertically in the center */
+/* Takes full width */
+/* Spreads the child elements across the available width */
+}
+.sub-buts{
+    display: flex;
+}
+.feedback-block {
+    width: 100%; /* Takes full width to ensure it's on a new line */
+    padding: 10px 0; /* Adds padding for visual separation */
+    color: #ccc; /* Optional: Change the color for the feedback */
+}
+.upload-container.logout-btn{
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+
+  }
+
+  .upload-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Ensures children take full width */
+    min-height: 100vh;
+    padding: 20px;
+    color: #fff; /* White text color for better readability in dark mode */
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between; /* Pushes children to opposite ends */
+    align-items: center; /* Vertically centers items in the container */
+    width: 100%; /* Full width of the container */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between; /* Pushes children to the opposite ends */
+    align-items: center; /* Vertically aligns items in the container */
+    width: 100%; /* Ensures it takes full width of its parent */
 }

@@ -126,7 +126,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-    
+    width: fit-content;
 }
 
 .logout-btn:hover {

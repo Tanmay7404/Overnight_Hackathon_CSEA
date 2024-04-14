@@ -85,7 +85,7 @@ function CreateAssignment() {
         "endtime":endTime,
         // "testInput":testInput,
         // "testOutput":testOutput,
-        "lang": lang,
+        "language": lang,
         "testCases" : values,
         "penaltyTime":penaltyTime,
         "users": values2,

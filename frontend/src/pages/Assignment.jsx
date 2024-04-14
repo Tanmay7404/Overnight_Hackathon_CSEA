@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './Assignment.css';
+import { Button } from '@mui/material';
 
 function Assignment() {
   const navigate = useNavigate();
@@ -54,6 +55,32 @@ function Assignment() {
 
     fetchAssignment();
   }, [id, navigate]);
+
+
+  const checkAssignments = async () => {
+        
+    try {
+      const response = await fetch(`http://localhost:8080/assignment/checkAssignments/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to check assignments');
+      }
+
+      const data = await response.text();
+      console.log(data)
+      
+    //  setPageData(data);
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error checking assignment'+error);
+    }
+  };
+
 
   const handleUpload = async (event) => {
     event.preventDefault();
@@ -118,7 +145,11 @@ function Assignment() {
                 <h1>{pageData.title}</h1>
                 <div className="question">{pageData.question}</div>
             </div>
+            <div style={{display:'flex',justifyContent: 'space-between' }} >
             <h2>File Submission</h2>
+            {role==1&&(
+<Button variant="contained" color="success" onClick={()=>{checkAssignments()}}>Auto-Grade</Button>)}
+</div>
             {role === 0 && (
                 <div className="submission">
                     <form onSubmit={handleUpload}>
@@ -137,13 +168,13 @@ function Assignment() {
         {role === 1 && (
     <div id="persons">
         {pageData.submissions?.map((data) => (
-            <div>
-            <div
+            <div >
+            <div style={{display:'flex',flexDirection: 'column',height:100}}
                 key={data.rollNumber}
                 className="person"
                 onClick={() =>{} }
             >
-            <div>
+            <div >
                 {data.rollNumber}
                 </div>
                 <div >

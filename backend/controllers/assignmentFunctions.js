@@ -4,6 +4,7 @@ const {bakersDup} = require ("../functions/plagiagrismFunc.js");
 
 const Axios = require('axios');
 const User = require("../models/userModel.js");
+const { jobs } = require("googleapis/build/src/apis/jobs/index.js");
 
 class AssigmentController {
     async addNewAssignment(assignment) {
@@ -80,7 +81,7 @@ class AssigmentController {
                 console.log(marks)
             }
 
-            const checkedAssignments =await this.checkPlagiarism(newSubmissions,stringArr)
+            const checkedAssignments =await this.checkPlagiarism(language,newSubmissions,stringArr)
 
             currAssignment.submissions=checkedAssignments
 
@@ -95,25 +96,27 @@ class AssigmentController {
 
             return currAssignment;
         } catch (err) {
+            console.log(err)
             throw new Error(err);
         }
     }
-        async checkPlagiarism(newAssignments,stringArr) {
+        async checkPlagiarism(language,newAssignments,stringArr) {
             try {
                 
                 var assignments=newAssignments;
-                const language=newAssignments[0].language
              
-                    for (let i = 0; i < submissions.length-1; i++) {
+                    for (let i = 0; i < stringArr.length-1; i++) {
                       
                         var cheated=false;
                     
-                        for (let j = i+1; j < submissions.length; j++) {
+                        for (let j = i+1; j < stringArr.length; j++) {
                 
                             cheated=bakersDup(stringArr[i],stringArr[j],language);
                             if(cheated===true)
                             {
                                 assignments[i].marks=0;
+                                assignments[j].marks=0;
+
                                 break;
                             }
 
@@ -169,7 +172,7 @@ class AssigmentController {
                 url: 'https://online-code-compiler.p.rapidapi.com/v1/',
                 headers: {
                   'content-type': 'application/json',
-                  'X-RapidAPI-Key': 'ad8530c212msh65c2725baaea14ep122618jsn181f4d03edbc',
+                  'X-RapidAPI-Key': '7ea4df7731mshef9a07aed030493p1e1016jsn2e413503d1a3',
                   'X-RapidAPI-Host': 'online-code-compiler.p.rapidapi.com'
                 },
                 data : data3

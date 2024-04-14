@@ -135,25 +135,25 @@ function getHashValues(code) {
 
 function normalizeIdentifiers(language, code) {
     switch (language) {
-        case 'cpp' | 'c':
-        
+        case 'C++':
             return normalizeIdentifiersCPP(code);
-        case 'dart':
+        case 'C':
+            return normalizeIdentifiersCPP(code);
+        case 'Dart':
             return normalizeIdentifiersDart(code);
-        case 'sql':
+        case 'SQL':
             return normalizeIdentifiersSQL(code);
         case 'javascript':
             return normalizeIdentifiersJavaScript(code);
-        case 'python':
+        case 'Python':
             return normalizeIdentifiersPython(code);
-             case 'php':
-             return   normalizeIdentifiersPHP(code);
-            
-        break
+        case 'PHP':
+            return normalizeIdentifiersPHP(code);
         default:
             throw new Error('Unsupported language');
     }
 }
+
 // Function to normalize identifiers for PHP
 function normalizeIdentifiersPHP(code) {
     // Replace variable names, function names, and identifiers with placeholders
@@ -171,25 +171,25 @@ function removeWhitespaceAndCommentsPHP(code) {
 // Baker's Dup technique implementation
 function bakersDup(code1, code2, language) {
     let cleanedCode1, cleanedCode2;
-
+console.log(language)
     // Remove whitespace characters and comments based on the language
-    if (language === 'cpp') {
+    if (language === 'C++') {
         cleanedCode1 = removeWhitespaceAndCommentsCPP(code1);
         cleanedCode2 = removeWhitespaceAndCommentsCPP(code2);
-    } else if (language === 'dart') {
+    } else if (language === 'Dart') {
         cleanedCode1 = removeWhitespaceAndCommentsDart(code1);
         cleanedCode2 = removeWhitespaceAndCommentsDart(code2);
-    } else if (language === 'sql') {
+    } else if (language === 'SQL') {
         cleanedCode1 = removeWhitespaceAndCommentsSQL(code1);
         cleanedCode2 = removeWhitespaceAndCommentsSQL(code2);
     } else if (language === 'c') {
         cleanedCode1 = removeWhitespaceAndCommentsC(code1);
         cleanedCode2 = removeWhitespaceAndCommentsC(code2);
-    } else if (language === 'python') {
+    } else if (language === 'Python') {
         cleanedCode1 = removeWhitespaceAndCommentsPython(code1);
         cleanedCode2 = removeWhitespaceAndCommentsPython(code2);
     }
-    else if (language === 'php') {
+    else if (language === 'PHP') {
         cleanedCode1 = removeWhitespaceAndCommentsPHP(code1);
         cleanedCode2 = removeWhitespaceAndCommentsPHP(code2);
     } else {
@@ -197,13 +197,13 @@ function bakersDup(code1, code2, language) {
     }
 
     // Normalize identifiers for Python
-    if (language === 'python') {
+    if (language === 'Python') {
         const normalizedCode1 = normalizeIdentifiersPython(cleanedCode1);
         const normalizedCode2 = normalizeIdentifiersPython(cleanedCode2);
         cleanedCode1 = normalizedCode1;
         cleanedCode2 = normalizedCode2;
     }
-    if (language !== 'python') {
+    if (language !== 'Python') {
         const normalizedCode1 = normalizeIdentifiers(language, cleanedCode1);
         const normalizedCode2 = normalizeIdentifiers(language, cleanedCode2);
         cleanedCode1 = normalizedCode1;

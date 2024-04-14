@@ -1,6 +1,7 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 import './login.css';
+import Form from 'react-bootstrap/Form';
 
 // Import your profile image
 import TextField from '@mui/material/TextField';
@@ -35,33 +36,48 @@ export default function Register() {
     // projects: [],
     // coursesCompleted: []
   });
-  
-  const handleSubmit = () => {
+// useEffect(()=>{
+
+// },[username,email,rollNumber,password,department])
+  const handleRadioChange = (e) => {
+    setRole(e);
+  };
+  const handleSubmit = async() => {
     // Assuming you have an API endpoint to send the data
     if(formData.username==='')
     {
       window.alert('username cannot be empty ' );
       return
     }
-    console.log(formData)
-    fetch('http://localhost:8080/user/addNewUser', {
+    if(formData.rollNumber==='')
+    {
+      window.alert('rollNumber cannot be empty ' );
+      return
+    }
+   const resp=await fetch('http://localhost:8080/user/addNewUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({   "fullName": username,
+        "email": email,
+        "department":department,
+        "password":password,
+        "rollNumber":rollNumber,
+        "role":role})
     })
     .then(response => {
-      if(response.status==500){
-        window.alert('UserName Already Exists. Choose a new one' );
+      if (response.ok) {
+        navigate("/sucesslogin/" + formData.rollNumber);
+      } else {
+        return response.text().then(data => {
+          throw new Error(data); // Throw an error with the error message from the response body
+        });
       }
-      else{
-        navigate("/HomePage/"+formData.email)
-      }
-      
     })
     .catch((error) => {
       console.error('Error:', error);
+window.alert(error.message)
       // Handle error
     });
   };
@@ -75,7 +91,7 @@ export default function Register() {
   var [email,setEmail] = useState("");
   var [password,setPassword] = useState("");
   var [rollNumber,setRollNumber] = useState("");
-  var [role,setRole] = useState();
+  var [role,setRole] = useState(0);
 
 
 
@@ -107,7 +123,7 @@ export default function Register() {
 
       {/* </div> */}
       <TextInputs name="Full Name" state={username} setState={setUS} fixed={false}/>
-      <TextInputs name="Password" state={email} setState={setPassword} fixed={false}/>
+      <TextInputs name="Password" state={password} setState={setPassword} fixed={false}/>
 
       <div className="fillWidthDiv">
       <TextInputs name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false}/>
@@ -116,7 +132,24 @@ export default function Register() {
         </div>
 
       <TextInputs name="Email" state={email} setState={setEmail} fixed={false}/>
-
+<div className="Email">
+        <Form.Check
+          type="radio"
+          label="Student"
+          id="radio-option1"
+          value="option1"
+          checked={role === 0} // Set the checked state based on selectedOption
+          onChange={()=>{handleRadioChange(0)}} // Handle radio button change
+        />
+        <Form.Check
+          type="radio"
+          label="Instructor"
+          id="radio-option2"
+          value="option2"
+          checked={role===1} // Set the checked state based on selectedOption
+          onChange={()=>{handleRadioChange(1)}} // Handle radio button change
+        />
+    </div>
       {/* <SelectTags text = "Selected Skills" selectedTags={selectedTags} setSelectedTags={setSelectedTags} /> */}
      
       
@@ -178,7 +211,7 @@ export default function Register() {
 </div> */}
 <div className="name">
   <div className="buttonContainer" >
-    <Button variant="dark" className="buttonHover" style={{width:200,height:30, backgroundColor: 'black'}} onClick={handleSubmit} >
+    <Button variant="dark" className="buttonHover" style={{width:200,height:30, backgroundColor: 'black'}} onClick={()=>{handleSubmit()}} >
       Done
     </Button>
   </div>

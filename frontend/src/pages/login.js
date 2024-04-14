@@ -1,6 +1,7 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
 import './login.css';
+import Form from 'react-bootstrap/Form';
 
 // Import your profile image
 import TextField from '@mui/material/TextField';
@@ -24,7 +25,7 @@ export default function Login() {
 
 
   
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     // Assuming you have an API endpoint to send the data
     if(formData.username==='')
     {
@@ -32,24 +33,30 @@ export default function Login() {
       return
     }
     console.log(formData)
-    fetch('http://localhost:8080/user/addNewUser', {
+   await fetch('http://localhost:8080/user/getUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify({
+        "rollNumber":rollNumber,
+        "password":password,
+        "role":role
+      })
     })
     .then(response => {
-      if(response.status==500){
-        window.alert('UserName Already Exists. Choose a new one' );
-      }
-      else{
-        navigate("/sucesslogin/"+formData.username)
-      }
-      
-    })
+        if (response.ok) {
+            navigate("/sucesslogin/" + formData.rollNumber);
+        } else {
+          return response.text().then(data => {
+            throw new Error(data); // Throw an error with the error message from the response body
+          });
+        }
+      })
+
     .catch((error) => {
-      console.error('Error:', error);
+      console.log('Error:'+ error);
+window.alert(error.message)
       // Handle error
     });
   };
@@ -62,12 +69,16 @@ export default function Login() {
         }
     },
 }
-      
+const handleRadioChange = (e) => {
+    setRole(e);
+  };
 
   var [username,setUS] = useState("");
   var [department,setDept] = useState("");
   var [email,setEmail] = useState("");
   var [password,setPassword] = useState("");
+  var [role,setRole] = useState(0);
+  var [rollNumber,setRollNumber] = useState("");
 
   const [formData, setFormData] = useState({
     fullname: username,
@@ -110,70 +121,30 @@ export default function Login() {
       {/* </div> */}
 
    
-        <TextInputs name="Email" state={email} setState={setEmail} fixed={false}/>
+        <TextInputs name="Roll Number" state={rollNumber} setState={setRollNumber} fixed={false}/>
 
-        <TextInputs name="Password" state={email} setState={setEmail} fixed={false}/>
-
-
-      {/* <SelectTags text = "Selected Skills" selectedTags={selectedTags} setSelectedTags={setSelectedTags} /> */}
+        <TextInputs name="Password" state={password} setState={setPassword} fixed={false}/>
      
       
 
-      {/* <div className="fillWidthDiv4">
-        <div className="E-mail">
-          <p className="text_input" >Social Links</p>
-        </div>
-      <div className="name">
-        <div className="email1">
-        <p style={{color:'white'}}>LinkedIn</p>
-      </div>
-      <div className="email2">
-        <TextField fullWidth id="fullWidth" size="small"  sx={style}
-        value={formData.linkedinLink}
-        onChange={(event) => setFormData({ ...formData, linkedinLink: event.target.value })}
-        InputProps={{
-          style: {
-            color: 'white', // Text color
-            borderColor: 'white', // Border color
-            backgroundColor: '#3B3B3B', 
-            // Background color
-          },
-          placeholder:"Type here"
-        }} // Change text color
-        InputLabelProps={{ style: { color: 'gray' } }} />
-      </div>
+<div className="Email">
+        <Form.Check
+          type="radio"
+          label="Student"
+          id="radio-option1"
+          value="option12"
+          checked={role === 0} // Set the checked state based on selectedOption
+          onChange={()=>{handleRadioChange(0)}} // Handle radio button change
+        />
+        <Form.Check
+          type="radio"
+          label="Instructor"
+          id="radio-option2"
+          value="option22"
+          checked={role===1} // Set the checked state based on selectedOption
+          onChange={()=>{handleRadioChange(1)}} // Handle radio button change
+        />
     </div>
-    <div className="space"></div>
-    <div className="name">
-      <div className="email1">
-        <p style={{color:'white'}}>Instagram</p>
-      </div>
-      <div className="email2"><TextField fullWidth id="fullWidth" size="small"  sx={style}
-      value={formData.instagramLink}
-      onChange={(event) => setFormData({ ...formData, instagramLink: event.target.value })}
-    InputProps={{
-        style: {
-            
-          color: 'white', // Text color
-          borderColor: 'white', // Border color
-          backgroundColor: '#3B3B3B', 
-         
-          // Background color
-        },
-        placeholder:"Type here"
-      }} // Change text color
-     InputLabelProps={{ style: { color: 'gray' } }} /></div>
-</div>
-<div className="space">
-
-</div>
-
-
-
-
-
-
-</div> */}
 <div className="name">
   <div className="buttonContainer" >
     <Button variant="dark" className="buttonHover" style={{width:200,height:30, backgroundColor: 'black'}} onClick={handleSubmit} >

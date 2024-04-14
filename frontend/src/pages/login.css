@@ -25,6 +25,9 @@ iframe#webpack-dev-server-client-overlay{ display:none!important }
     gap:20px;
     padding-left: 64px;
     padding-right: 64px;
+    border-radius: 25px;
+    padding-top: 20px;
+    padding-bottom:20px;
     /* Fills the whole height */
   }
  

@@ -90,17 +90,17 @@ console.log(existingUser)
                 }));
     
                 console.log(assignments);
-                return assignments;
+                return ({user_details:existingUser,ass:assignments});
             }
             else{
                 var assns = await Assignment.find({creator_roll:userDetails.roll_no});
-                
+                const existingUser = await User.findOne({rollNumber:userDetails.roll_no,role:1});
                 var assignments = assns.map((ass)=>{
                     console.log(ass);
                     console.log('are you?');
                     return {id: ass._id, name: ass.title, dueDate: ass.endTime};
                 })
-                console.log(assignments);
+                return ({user_details:existingUser,ass:assignments});
                 return assignments;
             }
         

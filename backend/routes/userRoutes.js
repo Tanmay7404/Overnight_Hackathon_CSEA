@@ -44,7 +44,7 @@ userRouter.post("/findUser", async (req,res)=>{
         
         const assignments = await UC.findUser(user_details);
         
-       // console.log(1222)a
+       console.log(1222);
        res.send(assignments)
     } catch (error) {
         console.log(23)

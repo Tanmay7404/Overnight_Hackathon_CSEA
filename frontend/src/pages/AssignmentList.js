@@ -11,6 +11,9 @@ function AssignmentList() {
   ]);
   const [roll_no, setRollNo] = useState(0);
   const [role, setRole] = useState(0);
+  const [fullName,setFN] = useState("");
+  const [dept,setDept] = useState("");
+  const [email,setEmail] = useState("");
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const navigate = useNavigate(); 
   
@@ -43,16 +46,21 @@ function AssignmentList() {
                 "role" : parsedUser.role
             })
           });
-  
+          
           if (!response.ok) {
             // Handle non-OK responses by throwing an error
             const errorText = await response.text();
             throw new Error(errorText || 'Error fetching data');
           }
+          
           // console.log(response.json())
           const data = await response.json();
-          setAssignments(data);
-          console.log(data)
+          console.log(data);
+          setAssignments(data.ass);
+          setFN(data.user_details.fullName);
+          setDept(data.user_details.department);
+          setEmail(data.user_details.email);
+          // console.log(data)
           //  Navigate based on success if needed
         } catch (error) {
           console.error('Error:', error);
@@ -102,20 +110,30 @@ function AssignmentList() {
   return (
     <div>
         <div className="header">
+            {role === 1 && (
+                <button className="create-assignment-btn" onClick={handleCreateNewAssignment}>
+                    Create New Assignment
+                </button>
+              )}  
             <h1 className="assignment-head">Assignments</h1>
             <button className="logout-btn" onClick={handleLogOut}>
                 Log Out
             </button>
+            
         </div>
-        {role === 1 && (
-            <button className="create-assignment-btn" onClick={handleCreateNewAssignment}>
-                Create New Assignment
-            </button>
-        )}
-        <div className="assignments-container">
-            {assignments.map(assignment => (
-                <AssignmentCard key={assignment.id} assignment={assignment} onClick={handleAssignmentClick} />
-            ))}
+        <div className='assignment-list'>
+          <div className='assignment-userData'>
+            <p>Roll_No: {roll_no}</p>
+            <p>Full Name: {fullName}</p>
+            <p>Email: {email}</p>
+            <p>Department: {dept}</p>
+            <p>Role: {(role==0)?"Student":"Instructor"}</p>
+          </div>
+          <div className="assignments-container">
+              {assignments.map(assignment => (
+                  <AssignmentCard key={assignment.id} assignment={assignment} onClick={handleAssignmentClick} />
+              ))}
+          </div>
         </div>
     </div>
 );

@@ -129,7 +129,7 @@ function CreateAssignment() {
             <div className="E-mail" >
                 <p className="text_input" >Select End Date</p>
             </div>
-            <input type="datetime-local" name="endTime" onChange={handleInputChange} required />
+            <input type="datetime-local" name="endTime" onChange={handleInputChange} required style={{backgroundColor:"#3B3B3B", height:"40px"}} />
         </div>
         {/* <TextInputs name="Due Date" state={endTime} setState={setEndTime} type="datetime-local" /> */}
 

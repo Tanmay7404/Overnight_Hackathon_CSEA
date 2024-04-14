@@ -5,13 +5,15 @@ const Languages = ({name,lang,setLang}) => {
   const handleChange = (event) => {
     setLang(event.target.value);
   };
-  const style = {
-      "& .MuiOutlinedInput-root": {
-          "&.Mui-focused fieldset": {
-          borderColor: "white"
-          }
+  const styles = {
+    select: {
+      "&:focus": {
+        borderColor: "white !important",
       },
-  }
+    },
+    color:"white",
+    backgroundColor :"#3B3B3B"
+  };
   return (
     <div className="fillWidthDiv4">
       <div className="E-mail" >
@@ -22,15 +24,14 @@ const Languages = ({name,lang,setLang}) => {
         value={lang}
         onChange={handleChange}
         displayEmpty
-        className="fullWidth" size="small" sx={style}
-
+        className="fullWidth" size="small" style={styles}
       >
         
-        <MenuItem value="Python">Python</MenuItem>
-        <MenuItem value="C++">C++</MenuItem>
-        <MenuItem value="Dart">Dart</MenuItem>
-        <MenuItem value="PHP">PHP</MenuItem>
-        <MenuItem value="SQL">SQL</MenuItem>
+        <MenuItem value="Python" style={{backgroundColor:"#3B3B3B"}}>Python</MenuItem>
+        <MenuItem value="C++" style={{backgroundColor:"#3B3B3B"}}>C++</MenuItem>
+        <MenuItem value="Dart" style={{backgroundColor:"#3B3B3B"}}>Dart</MenuItem>
+        <MenuItem value="PHP" style={{backgroundColor:"#3B3B3B"}}>PHP</MenuItem>
+        <MenuItem value="SQL" style={{backgroundColor:"#3B3B3B"}}>SQL</MenuItem>
       </Select>
     </div>
   );

@@ -2,6 +2,16 @@
 
 iframe#webpack-dev-server-client-overlay{ display:none!important }
 
+.contentPP::-webkit-scrollbar {
+  display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .contentPP {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  }
+
 :root {
   --button-color: rgb(0, 51, 255); /* Define a CSS variable for button color */
   --button-border-color: rgb(0, 51, 255); /* Define a CSS variable for button border color */

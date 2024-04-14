@@ -1,7 +1,10 @@
 const e = require("express");
 const User = require("../models/userModel"); // Assuming your user model is exported as User
+<<<<<<< HEAD
 const Assignment = require("../models/assignmentModel");
 
+=======
+>>>>>>> 3c1725dc2da548d9bc2fb5b1e6389c6d4395d4e7
 class UserController {
     
     async addNewUser(userDetails){

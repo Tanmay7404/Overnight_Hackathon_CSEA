@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   fullName:{ type: String, required: true },
-  rollNumber:{type:Number},
-  email: { type: String, required: true },
+  rollNumber:{type:Number, required: true},
+  email: { type: String},
   password:{ type: String},
   // profileInfo: {
   //   profilePicture: {url :String, filename: String}

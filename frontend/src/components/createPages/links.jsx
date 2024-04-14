@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import ClearIcon from '@mui/icons-material/Clear';
 
 
-export default function Links ({values2,setValues2}){
+export default function Links ({name,values2,setValues2,p1,p2}){
     
     const addTextField2 = () => {
         console.log(values2);
@@ -35,7 +35,7 @@ export default function Links ({values2,setValues2}){
     
     <div className="fillWidthDiv4">
         <div className="E-mail" >
-            <p style={{color:"white",margin:'0'}} >Add Students</p>
+            <p style={{color:"white",margin:'0'}} >Add {name}</p>
         </div>
 
         {values2.map((value, index) => (
@@ -50,7 +50,7 @@ export default function Links ({values2,setValues2}){
                     backgroundColor: '#3B3B3B',
                     // Background color
                     },
-                    placeholder:"Start Roll_no"
+                    placeholder: p1
                 }} // Change text color
                 InputLabelProps={{ style: { color: 'gray' } }} // Change label color
             />
@@ -64,7 +64,7 @@ export default function Links ({values2,setValues2}){
                     backgroundColor: '#3B3B3B',
                     // Background color
                     },
-                    placeholder:"End Roll_No",
+                    placeholder: p2,
                     endAdornment: (
                         <IconButton onClick={()=>handleClear2(index) } size="small" sx={{visibility:(index)?"visible":"hidden"}}>
                         <ClearIcon  />
@@ -83,7 +83,7 @@ export default function Links ({values2,setValues2}){
             <Button onClick={addTextField2}className="box" variant="dark" style={{  height: 25, width: 25, borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <h2 >+</h2>
             </Button>
-            <p style={{color:"white",marginLeft:10}} className="editProfile">Add more Links</p>
+            <p style={{color:"white",marginLeft:10}} className="editProfile">Add more {name}</p>
         </div>
     </div>
     );

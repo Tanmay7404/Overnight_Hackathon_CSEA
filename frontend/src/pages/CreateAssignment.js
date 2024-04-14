@@ -5,6 +5,7 @@ import './CreateAssignment.css';
 import Links from '../components/createPages/links';
 import TextInputs from "../components/createPages/textInputs";
 import Starting from '../components/createPages/starting';
+import Languages from '../components/createPages/languages';
 function CreateAssignment() {
   const navigate = useNavigate();
   
@@ -12,10 +13,13 @@ function CreateAssignment() {
   const [title, setTitle] = useState("");
   const [question, setQuestion] = useState("");
   const [endTime, setEndTime] = useState("");  // Due date as an ISO string or timestamp
-  const [testInput, setTestInput] = useState("");
-  const [testOutput, setTestOutput] = useState("");
+  // const [testInput, setTestInput] = useState("");
+  // const [testOutput, setTestOutput] = useState("");
   const [penaltyTime, setPenaltyTime] = useState("");
+  const [values, setValues] = useState([{ name: '', link: '' }]);
   const [values2, setValues2] = useState([{ name: '', link: '' }]);
+
+  const [lang,setLang] = useState("Python");
 
   const [roll_no, setRollNo] = useState(0);
 
@@ -79,8 +83,10 @@ function CreateAssignment() {
         "title":title,
         "question":question,
         "endtime":endTime,
-        "testInput":testInput,
-        "testOutput":testOutput,
+        // "testInput":testInput,
+        // "testOutput":testOutput,
+        "lang": lang,
+        "testCases" : values,
         "penaltyTime":penaltyTime,
         "users": values2,
         "roll_no": roll_no
@@ -113,18 +119,24 @@ function CreateAssignment() {
   
       <div class="contentPP">
     
-        <Starting text="Create Assignment"/>
+        <Starting text="Create Assignment" path="/AssignmentList"/>
 
 
         
         <TextInputs name="Name of Assignment" state={title} setState={setTitle} />
         <TextInputs name="Problem Statement" state={question} setState={setQuestion} type="textarea" />
-        <input type="datetime-local" name="endTime" onChange={handleInputChange} required />
+        <div className="fillWidthDiv4">
+            <div className="E-mail" >
+                <p className="text_input" >Select End Date</p>
+            </div>
+            <input type="datetime-local" name="endTime" onChange={handleInputChange} required />
+        </div>
         {/* <TextInputs name="Due Date" state={endTime} setState={setEndTime} type="datetime-local" /> */}
-        <TextInputs name="Input Test Cases" state={testInput} setState={setTestInput} />
-        <TextInputs name="Output Test Cases" state={testOutput} setState={setTestOutput} />
+
+        <Languages name="Select Submission Languages" setLang={setLang} lang={lang} />
+        <Links name = "Test Cases" p1="Input Case" p2="Output Case" values2={values} setValues2={setValues}/>
         <TextInputs name="Penalty for Late Submission" state={penaltyTime} setState={setPenaltyTime} />
-        <Links values2={values2} setValues2={setValues2}/>
+        <Links name = "Students" p1="Roll_No Range Start" p2="Roll_no Range End" values2={values2} setValues2={setValues2}/>
 
         <div className="name">
           <div className="buttonContainer" >
@@ -134,7 +146,7 @@ function CreateAssignment() {
             </Button>
           </div>
         </div>
-                        {/* <label>Name of Assignment</label> */}
+        {/* <label>Name of Assignment</label> */}
 {/* 
         <input type="text" name="title" placeholder="Name of Assignment" onChange={handleInputChange} required />
         <label>Problem Statement</label>

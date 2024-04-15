@@ -118,8 +118,15 @@ function Assignment() {
         throw new Error('Failed to check assignments');
       }
 
-      const data = await response.text();
+      const data = await response.json();
+
+      setPageData(prevData => ({
+        ...prevData,
+        submissions: data.submissions
+      }));     
+       console.log(12)
       console.log(data)
+      console.log(12)
       alert("Auto Grading Completed")
 
     //  setPageData(data);

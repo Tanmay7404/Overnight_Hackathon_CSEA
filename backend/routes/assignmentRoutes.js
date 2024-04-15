@@ -113,7 +113,7 @@ assigmentRouter.get("/checkAssignments/:assignmentId", async (req,res)=>{
     const assignment = await AC.checkAssignments(assignmentId);
 
    // console.log(1222)
-   res.send("success")
+   res.send(assignment)
 } catch (error) {
    // console.error(error);
    res.status(500).send(JSON.stringify(error.message));

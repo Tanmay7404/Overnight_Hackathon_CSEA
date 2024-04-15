@@ -1,5 +1,6 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
+import backgroundImage from '../assets/Copy-of-iitg_2021.jpg'; 
 import './login.css';
 import Form from 'react-bootstrap/Form';
 
@@ -105,7 +106,7 @@ window.alert(error.message)
       // };
 
   return (
-    <div class="loginPage">
+    <div class="loginPage" style={{ backgroundImage: `url(${backgroundImage})`}} >
   
     <div class="loginPP2" >
       {/* <div className="fillWidthDiv">

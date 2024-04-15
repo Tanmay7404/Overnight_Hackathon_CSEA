@@ -1,5 +1,6 @@
 import React from "react";
 import Button from 'react-bootstrap/Button';
+import backgroundImage from '../assets/Copy-of-iitg_2021.jpg'; // Adjust path as necessary
 import './login.css';
 import Form from 'react-bootstrap/Form';
 
@@ -94,8 +95,8 @@ const handleRadioChange = (e) => {
       // };
 
   return (
-  <div class="loginPage">
-  
+  <div class="loginPage" style={{ backgroundImage: `url(${backgroundImage})`}} >
+
     <div class="loginPP" >
       {/* <div className="fillWidthDiv">
         
@@ -142,12 +143,12 @@ const handleRadioChange = (e) => {
     </div>
 <div className="loginfillWidthDiv5">
   <div className="loginbuttonContainer" >
-    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"100%", backgroundColor: 'black'}} onClick={handleSubmit} >
+    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"120%",borderRadius:"10px", border:"black 2px", backgroundColor: 'black'}} onClick={handleSubmit} >
       Submit
     </Button>
   </div>
   <div className="loginbuttonContainer" >
-    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"100%", backgroundColor: 'black'}} onClick={()=>{navigate("/register")}} >
+    <Button variant="dark" className="buttonHover" style={{fontSize:"18px",padding:"0",margin:"0",width:"100%", height:"120%",borderRadius:"10px", border:"black 2px", backgroundColor: 'black'}} onClick={()=>{navigate("/register")}} >
       Register
     </Button>
   </div>

@@ -7,23 +7,29 @@ One can find the problem statement here "https://docs.google.com/document/d/1m3t
 
 The CS Assignment Autograder Portal is a comprehensive platform designed to streamline the assignment submission, plagiarism detection, and grading process for Computer Science students and instructors at IIT Guwahati. This project aims to alleviate the challenges faced by both students and teaching assistants by providing a centralized and automated system for managing assignments.
 
-Features
+
 **Submission Management:**
+
 Easy and secure file uploads in various formats. 
 Handles multiple file submissions for each assignment, provided they are made before the assignments end
 
 **Plagiarism Detection:**
-remove all the comments and whitespaces from the code, normalises the variables and then check the codes of all the submissions for similarity and detects plag. (Baker's Dup Algorithm)
+
+Remove all the comments and whitespaces from the code, normalises the variables and then check the codes of all the submissions for similarity and detects plag. (Baker's Dup Algorithm)
 
 **Auto-grading:**
+
 Instructor can provide Test Cases Api will be called to run the code on an online compiller and the student is graded accordingly
 
 **Feedback and Review:**
+
 Provides a clear and organized interface for instructors to review submissions and leave comments
 Students can access detailed feedback from auto-grading and instructor reviews
 
 **User Experience (UX)**
+
 Intuitive Interface: Easy to navigate for both students and instructors with minimal training required
+
 
 ## Known Issues
 Currently, there are no known issues.
@@ -35,8 +41,8 @@ Find Better API for compillers with no limit on number of API calls.
 Improved accessibility features for users with disabilities.
 
 ## Dependencies
-nodeJs, React, Mongoose,
-"axios","connect-mongo","cors","dotenv","express","express-session","fs","googleapis","lodash","method-override","mongodb","mongoose","multer","multer-storage-cloudinary","node-fetch","nodemon"
+NodeJs, React, Mongoose,
+"Axios","Connect-Mongo","Cors","Dotenv","Express","Express-session","fs","Googleapis","Lodash","Method-override","Mongodb","Mongoose","Multer","Multer-storage-Cloudinary","Node-fetch","Nodemon"
 
 ## How to Run 
 1) Clone the repo on your device
@@ -55,10 +61,10 @@ nodeJs, React, Mongoose,
 ## Screenshots
 
 Login Page
-![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/1ea47dcc-2884-452c-bdc4-f2949013e209)
+![WhatsApp Image 2024-04-15 at 19 11 13_fd6f6dce](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/de0b6f56-414b-4d09-aee8-f08b059e82eb)
 
 Register Page
-![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/6fac0d0a-4144-4cc0-a1cc-89a65e3ea050)
+![WhatsApp Image 2024-04-15 at 19 11 44_74f3f005](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/c01a45c2-b86c-4046-9202-7d4a61ab21df)
 
 Assignment List
 ![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/9a08c727-2915-47a9-9b09-64cf1f72500d)
@@ -73,6 +79,8 @@ Submitting File
 ![image](https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/assets/118533285/0e16e9c6-4344-4545-9d40-3588199dfb99)
 
 
+Demo Video
+https://drive.google.com/file/d/10Bll1qnmXJjvLb-YAowjGv4tkEGjCdl2/view
 
 Impact
 Potential Benefit: Streamlines assignment submissions, plagiarism detection, and grading processes
@@ -81,3 +89,4 @@ Demo Video
 
 
 GitHub Repository
+https://github.com/Tanmay7404/Overnight_Hackathon_CSEA/

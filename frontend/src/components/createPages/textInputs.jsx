@@ -1,7 +1,7 @@
 import React from "react";
 import TextField from '@mui/material/TextField';
 
-export default function TextInputs ({name,state,setState, fixed,type}){
+export default function TextInputs ({name,state,setState, fixed,type,tp,variant}){
     const style = {
         "& .MuiOutlinedInput-root": {
             "&.Mui-focused fieldset": {
@@ -23,18 +23,19 @@ export default function TextInputs ({name,state,setState, fixed,type}){
                 <p className="text_input" >{name}</p>
             </div>
             
-            <TextField type = {type} fullWidth  className="fullWidth" size="small" sx={fixed?fixedstyle:style}
+            <TextField variant={variant} type = {type} fullWidth  className="fullWidth" size="small" sx={fixed?fixedstyle:style}
                 value={state}
                 onChange={(event) => {if(!fixed){setState(event.target.value) }}}
                 InputProps={{
                     style: {
                         
                     color: 'white', // Text color
-                    backgroundColor: fixed ? "#131313": '#3B3B3B',
+                    backgroundColor: fixed ?(variant?  "#2C2C2C" : "#131313") : "#3B3B3B",
                     // Background color
                     },
                     placeholder:"Type here",
-                    readOnly: fixed?true:null
+                    readOnly: fixed?true:null,
+                    multiline:tp?true:false
                 }} // Change text color
                 InputLabelProps={{ style: { color: 'gray' } }} // Change label color
                 

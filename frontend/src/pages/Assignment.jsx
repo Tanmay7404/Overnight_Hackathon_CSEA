@@ -17,6 +17,8 @@ function Assignment() {
   const [roll_no, setRollNo] = useState(220101018);
   const [marks, setMarks] = useState(null);
   const [feedback, setFeedback] = useState("");
+  const [aifeedback, aisetFeedback] = useState("");
+
   const [selectedRoll,setSelectedRoll]=useState();
 //   const [assignment_id, setAssId] = useState();
   const [role, setRole] = useState(0);
@@ -82,6 +84,7 @@ function Assignment() {
             if (submission) {
                 console.log("Instructor's feedback", submission.feedback);
                 setFeedback(submission.feedback);
+aisetFeedback(submission.aiFeedback)
             } else {
                 console.log("No submission found for this roll number.");
                 setFeedback(null);
@@ -103,7 +106,7 @@ function Assignment() {
     fetchAssignment();
   }, [id, navigate]);
 
-
+  
   const checkAssignments = async () => {
         
     try {
@@ -289,8 +292,13 @@ function Assignment() {
                     <div className="feedback-block">
                         {(marks === null) ? "No Feedback Yet" : `Instructor's Feedback: ${feedback}`}
                     </div>
+                
                     {message && <p>{message}</p>}
+                    <div style={{width:'100%'}}>
+                    <TextInputs variant={"outlined"} name="AI Feedback" state={aifeedback} tp={"multi"} fixed={"true"} />
+                    </div>
                 </div>
+                
             )}
         {role === 1 && (
     <div >
@@ -313,12 +321,12 @@ function Assignment() {
   {selectedRoll === data.rollNumber&&(<div onClick={()=>{if(selectedRoll !== data.rollNumber){setSelectedRoll(data.rollNumber)}else
 {setSelectedRoll()
 
-}}}>  <p >Add Feedback<IoArrowUp ></IoArrowUp></p></div>)}
+}}}>  <p >Feedback<IoArrowUp ></IoArrowUp></p></div>)}
 
 
   {selectedRoll !== data.rollNumber&&( <div onClick={()=>{setSelectedRoll(data.rollNumber)
   setCurrFeedback(data.feedback)
-  }}> <p >Add Feedback<IoArrowDown  ></IoArrowDown></p></div>)}
+  }}> <p >Feedback<IoArrowDown  ></IoArrowDown></p></div>)}
 
 
 
@@ -331,6 +339,8 @@ function Assignment() {
         <Button variant="outlined" color="secondary" onClick={()=>{
 submitFeedback()
         }}>Submit Feedback</Button>
+<div style={{height:20}}></div>
+<TextInputs name="AI Feedback" state={data.aiFeedback} tp={"multi"} fixed={"true"} />
             </div>)}
 
                 </div>

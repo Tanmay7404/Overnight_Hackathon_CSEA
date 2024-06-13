@@ -5,6 +5,7 @@ const {bakersDup} = require ("../functions/plagiagrismFunc.js");
 const Axios = require('axios');
 const User = require("../models/userModel.js");
 const { jobs } = require("googleapis/build/src/apis/jobs/index.js");
+const { default: axios } = require("axios");
 
 class AssigmentController {
     async addNewAssignment(assignment) {
@@ -75,7 +76,44 @@ class AssigmentController {
 
                 }
                 var marks=((a)*100.00)/testCaseSize;
+               
                 var nextSubmission=submission
+                if(marks<100)
+                    {
+                        const options = {
+                            method: 'POST',
+                            url: 'http://localhost:8080/generate',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            data: { prompt:"The question of my problem is"+currAssignment.question+" Please can you check what is wrong with my solution code-->"+"code is"+convertedFile }
+                        };
+                        console.log(13,currAssignment.question,131)
+                
+                        const response = await Axios(options);
+                        const result = response.data;
+                        nextSubmission.aiFeedback=result;
+
+                        console.log(result)
+                       // i want to send a query to generate response for my code 
+
+                    }else
+                    {
+                        const options = {
+                            method: 'POST',
+                            url: 'http://localhost:8080/generate',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            data: { prompt: "The question of my problem is"+currAssignment.question+"This code is correct but can you provide feedback on what i can improve upon in the code-->"+"code is"+convertedFile }
+                        };
+                
+                        const response = await Axios(options);
+                        const result = response.data;
+                        nextSubmission.aiFeedback=result;
+                        console.log(result)
+                    }
+
                 nextSubmission.marks=marks;
                 newSubmissions.push(nextSubmission)
                 console.log(marks)
@@ -100,6 +138,9 @@ class AssigmentController {
             throw new Error(err);
         }
     }
+
+
+
         async checkPlagiarism(language,newAssignments,stringArr) {
             try {
                 

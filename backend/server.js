@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const http = require("http");
 const _ = require('lodash');
 const cors = require("cors");
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const genAI = new GoogleGenerativeAI("AIzaSyD_-BM_UUFlX7Zr3aZ3thWH5YkhjDS2R8w");
 
 
 
@@ -34,7 +36,21 @@ async function initialize() {
 
 
 
+app.post('/generate',async(req,res)=>{
+    const {prompt}=req.body;
+    try{
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash"});
+const result=await model.generateContent(prompt);
+const response=await result.response;
+const text=response.text();
 
+
+
+res.send(text)
+    }catch(error){
+        res.send("Failed to generate content")
+    }
+})
 
 
 

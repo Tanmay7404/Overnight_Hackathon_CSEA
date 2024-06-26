@@ -24,7 +24,7 @@
 .assignments-container {
     display: flex;
     flex-direction: column;
-    
+    max-width: 80%;
     margin-top: 20px;
     height: fit-content;
     margin: auto;

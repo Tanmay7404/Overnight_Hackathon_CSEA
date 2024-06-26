@@ -103,7 +103,9 @@ function AssignmentList() {
     localStorage.removeItem('user');
     navigate(`/login`); // Changed method call from history.push to navigate
   };
-
+  const handleProfileClick = () => {
+    navigate(`/profile`);
+  };
   
   
 
@@ -115,6 +117,9 @@ function AssignmentList() {
                     Create New Assignment
                 </button>
               )}  
+            <button className="logout-btn" onClick={handleProfileClick}>
+              Profile
+            </button>
             <h1 className="assignment-head">Assignments</h1>
             <button className="logout-btn" onClick={handleLogOut}>
                 Log Out
@@ -122,13 +127,13 @@ function AssignmentList() {
             
         </div>
         <div className='assignment-list'>
-          <div className='assignment-userData'>
+          {/* <div className='assignment-userData'>
             <p>Roll_No: {roll_no}</p>
             <p>Full Name: {fullName}</p>
             <p>Email: {email}</p>
             <p>Department: {dept}</p>
             <p>Role: {(role==0)?"Student":"Instructor"}</p>
-          </div>
+          </div> */}
           <div className="assignments-container">
               {assignments.map(assignment => (
                   <AssignmentCard key={assignment.id} assignment={assignment} onClick={handleAssignmentClick} />

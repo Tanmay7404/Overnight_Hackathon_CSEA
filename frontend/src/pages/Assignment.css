@@ -1,184 +1,205 @@
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212; /* Dark grey background for the body */
-  }
-
-  .upload-container {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    padding: 20px;
-    color: #fff; /* White text color for better readability in dark mode */
-  }
-  /* .upload-container.form{
-    display: flex;
-    
-  } */
-
-  .btn-attach, .btn-hand-in {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: white; /* White text for all buttons */
-  }
-
-  .btn-attach {
-    background-color: #2c2c2c; /* Darker shade for attach button */
-    width: fit-content; /* Slightly lighter grey on hover */
-  }
-
-  .btn-attach:hover {
-    background-color: #3d3d3d;
-  }
-
-  .btn-hand-in {
-    background-color: #0056b3; /* Blue for the hand in button */
-    /* Keep Hand In to the right side */
-  }
-
-  .btn-hand-in:hover {
-    background-color: #004488; /* Darker blue on hover */
-  }
-
-  .file-name {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #aaa; /* Light grey color for file name to make it stand out less */
-  }
-
-  .question {
-    color: white;
-    background-color: #828282bb;
-    padding: 40px ;
-    max-width: 70%;
-    margin: auto;
-    border-radius: 50px;
-    /* Slightly muted green for messages */
-  }
-
-
-  .submission {
-    /* position: relative; */
-    display: flex;
-    /* flex-direction: row; */
-    justify-content: space-between; /* Spreads the child elements across the available width */
-    align-items: center; /* Keeps elements vertically aligned in the center */
-    width: 100%; /* Ensures the container takes the full width of its parent */
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #121212; /* Dark grey background for the body */
 }
 
-.btn-hand-in {
-    margin-left: auto;
-}
-.hand-in-button{
-    margin: auto;
-}
-
-
-.submission {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between; /* Ensures children are spaced out to each end */
-    align-items: center; /* Vertically centers the content */
-    width: 100%; /* Takes full width */
-}
-
-.input-button, .hand-in-button {
-    display: flex;
-    align-items: center;
-}
-
-.btn-attach, .btn-hand-in {
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    color: white; /* White text for all buttons */
-}
-
-.btn-attach {
-    background-color: #2c2c2c; /* Darker shade for attach button */
-}
-
-.btn-attach:hover {
-    background-color: #3d3d3d; /* Lighter grey on hover */
-}
-
-.btn-hand-in {
-    background-color: #0056b3; /* Blue for the hand in button */
-}
-
-.btn-hand-in:hover {
-    background-color: #004488; /* Darker blue on hover */
-}
-
-.file-name {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #aaa; /* Light grey color for file name to make it stand out less */
-}
-
-.submission {
-    /* display: flex; */
-    flex-direction: column; /* Changes the flex direction to column for vertical stacking */
-}
-
-.input-button, .hand-in-button, .marks-col {
-    display: flex;
-/* Aligns items vertically in the center */
-/* Takes full width */
-/* Spreads the child elements across the available width */
-}
-.sub-buts{
-    display: flex;
-}
-.feedback-block {
-    width: 100%; /* Takes full width to ensure it's on a new line */
-    padding: 10px 0; /* Adds padding for visual separation */
-    color: #ccc; /* Optional: Change the color for the feedback */
-}
-.upload-container.logout-btn{
-    background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: fit-content;
-
-  }
-
-  .upload-container {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch; /* Ensures children take full width */
-    min-height: 100vh;
-    padding: 20px;
-    color: #fff; /* White text color for better readability in dark mode */
-}
-
-.top-bar {
-    display: flex;
-    justify-content: space-between; /* Pushes children to opposite ends */
-    align-items: center; /* Vertically centers items in the container */
-    width: 100%; /* Full width of the container */
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the container content */
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff; /* White text color for better readability in dark mode */
 }
 
 .header {
-    display: flex;
-    justify-content: space-between; /* Pushes children to the opposite ends */
-    align-items: center; /* Vertically aligns items in the container */
-    width: 100%; /* Ensures it takes full width of its parent */
+  display: flex;
+  justify-content: space-between; /* Pushes children to the opposite ends */
+  align-items: center; /* Vertically aligns items in the container */
+  width: 100%; /* Ensures it takes full width of its parent */
+  margin-bottom: 20px; /* Add space below the header */
+}
+
+.header h1 {
+  margin: 0; /* Remove default margin */
+  font-size: 24px; /* Increase font size */
+  font-weight: bold; /* Make the title bold */
+}
+
+.logout-btn {
+  background-color: #4CAF50; /* Green */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.assignment-show .question {
+  color: white;
+  background-color: transparent; /* Remove background color */
+  padding: 40px;
+  max-width: 96%;
+  margin: auto;
+  text-align: center; /* Center align text */
+  font-size: 20px; /* Increase font size */
+}
+
+.submission {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the submission content */
+  width: 100%; /* Ensures it takes full width of its parent */
+}
+
+.submission form {
+  display: flex;
+  justify-content: space-between; /* Spread form elements */
+  width: 100%; /* Full width form */
+}
+
+.sub-buts {
+  display: flex;
+  justify-content: space-between; /* Spread buttons */
+  width: 100%; /* Full width */
+}
+
+.input-button, .hand-in-button {
+  display: flex;
+  align-items: center;
+}
+
+.btn-attach, .btn-hand-in {
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: white; /* White text for all buttons */
+}
+
+.btn-attach {
+  background-color: #2c2c2c; /* Darker shade for attach button */
+}
+
+.btn-attach:hover {
+  background-color: #3d3d3d; /* Lighter grey on hover */
+}
+
+.btn-hand-in {
+  background-color: #0056b3; /* Blue for the hand in button */
+}
+
+.btn-hand-in:hover {
+  background-color: #004488; /* Darker blue on hover */
+}
+
+.file-name {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #aaa; /* Light grey color for file name to make it stand out less */
+}
+
+.marks-col {
+  margin: 10px 0; /* Add margin for spacing */
+}
+
+.feedback-block {
+  width: 100%; /* Takes full width to ensure it's on a new line */
+  padding: 10px 0; /* Adds padding for visual separation */
+  color: #ccc; /* Change the color for the feedback */
+}
+
+h2 {
+  text-align: center; /* Center align the headings */
+  font-size: 22px; /* Increase font size */
+  margin: 20px 0; /* Add margin for spacing */
+}
+
+.logout-btn {
+  background-color: #d9534f; /* Red background for the logout button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #c9302c; /* Darker red on hover */
+}
+
+/* Instructor View */
+.person {
+  display: flex;
+  justify-content: space-between; /* Spread elements */
+  align-items: center;
+  padding: 10px;
+  background-color: #1d1d1d; /* Slightly lighter grey for person blocks */
+  border-radius: 5px;
+  margin-bottom: 10px; /* Space between submissions */
+}
+
+.person p {
+  margin: 0;
+}
+
+.download-link {
+  text-decoration: none;
+  color: #fff; /* White color for the download icon */
+  font-size: 24px; /* Larger icon size */
+}
+
+.download-link:hover {
+  color: #ddd; /* Lighter color on hover */
+}
+
+.feedback-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #bbb; /* Lighter color for feedback toggle */
+}
+
+.feedback-toggle:hover {
+  color: #fff; /* White color on hover */
+}
+
+.feedback-form {
+  background-color: #1d1d1d; /* Slightly lighter grey for feedback form */
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 10px; /* Space above feedback form */
+}
+
+.feedback-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #2c2c2c; /* Darker background for textarea */
+  color: #fff; /* White text */
+}
+
+.feedback-form button {
+  margin-top: 10px; /* Space above button */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #0056b3; /* Blue button */
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #004488; /* Darker blue on hover */
 }

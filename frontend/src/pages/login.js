@@ -34,7 +34,7 @@ export default function Login() {
       return
     }
     // console.log(formData)
-   await fetch('http://localhost:8080/user/getUser', {
+   await fetch('http://overnight-hackathon2-csea.vercel.app/user/getUser', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

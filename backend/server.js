@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(cors(
     {
-        origin: ["https://overnight-hackathon-backend.vercel.app"],
+        origin: ["assignment-autograder.app"],
         methods: ["POST", "GET"],
         credentials: true
     }

@@ -13,13 +13,7 @@ const genAI = new GoogleGenerativeAI("AIzaSyD_-BM_UUFlX7Zr3aZ3thWH5YkhjDS2R8w");
 const app = express();
 app.use(express.json());
 app.use(express.static("public"));
-app.use(cors(
-    {
-        origin: ["assignment-autograder.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
+app.use(cors());
 
 
 

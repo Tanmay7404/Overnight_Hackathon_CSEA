@@ -18,6 +18,7 @@ Handles multiple file submissions for each assignment, provided they are made be
 **Plagiarism Detection:**
 
 Remove all the comments and whitespaces from the code, normalises the variables and then check the codes of all the submissions for similarity and detects plag. (Baker's Dup Algorithm)
+Here is a source for reading more about it [Baker's Dup](https://www.computer.org/csdl/proceedings-article/wcre/1995/71110086/12OmNylsZBI)
 
 **Auto-grading:**
 
@@ -30,7 +31,7 @@ Students can access detailed feedback from auto-grading and instructor reviews
 
 **AI Feedback and Code Correction using Gemini:**
 
-The website uses Gemini for showing what error the user has made on his/her code. Not only is code corrected but feedback is also given. Even if the code is correct feedback is still given to the student for improvement purposes.
+The website uses **Google's Gemini** for showing what error the user has made on his/her code. Not only is code corrected but feedback is also given. Even if the code is correct feedback is still given to the student for improvement purposes.
 
 **User Experience (UX)**
 
